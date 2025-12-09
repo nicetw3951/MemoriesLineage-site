@@ -237,15 +237,15 @@
     const DATA = [
       // 更新與活動內容
       `<span class="alert">!!將於2025/12/12 20:00開服!!</span><br>
-	  <br><span class="h2-red">開服等活動<br>
-      <span class="data-block">系統自動發放，各職業前5名首次到達90等獎勵400元寶，全職業前10名首次到達99等獎勵1000元寶</span><BR>
+	  <br><span class="h2-red">開服衝等活動<br>
+      <span class="data-block">系統自動發放，各職業前5名首次到達90等獎勵500元寶，全職業前10名首次到達99等獎勵1000元寶</span><BR>
 	  `,
       // 遊戲設定
       `<span class="h2-red">伺服器有內掛系統可24H掛機，打寶練功不落後<BR>輸入帳號密碼首次登入會自動建立帳號<br>每日18:00重啟伺服器<br>所有道具皆可從遊戲中獲得<BR>
 	  50等開始會有能力點，到99等共計49點<BR>
 	  升級配點單屬性上限至25，萬能藥單屬性可提升上限至35點(萬能藥使用無上限)，回憶蠟燭可配置上限至35點<BR>
 	  首次99等系統贈送回憶蠟燭(使用回憶蠟燭後會自動完美洗血洗魔，轉生後不可使用)，可在轉生前配置自己的喜好，體質、精神越高，升級給予的生命、魔力越高</span><BR>
-	  <br><span class="h2-blue">轉生:十轉<br>轉生後保留當前10%生命與魔力<BR>經驗:2000倍<br>金幣:5倍<br>道具2倍<br>負重5倍<br>衝裝機率提高10%<br>武器開放上限+12<br>防具開放上限+12<br>IP上限3開<BR>每週五重啟後經驗提升50%，持續到週日18:00重啟後結束</span><BR>
+	  <br><span class="h2-blue">轉生:十轉<br>轉生後保留當前15%生命與魔力<BR>經驗:2000倍<br>金幣:5倍<br>道具2倍<br>負重5倍<br>衝裝機率提高10%<br>武器開放上限+12<br>防具開放上限+12<br>IP上限3開<BR>每週五重啟後經驗提升50%，持續到週日18:00重啟後結束</span><BR>
 	  `,
       // 特色介紹
 	  `
@@ -290,10 +290,11 @@
 	  `,
 	  // 職業介紹 <span style="color:#CC0088">※王族可創立血盟攻城宣戰※王族傷害提升30%</span><br>
       `
-	  <span style="color:red;">◎王族特色◎</span><br>
-	  <span class="data-block">基礎生命上限：3000、基礎魔力上限：1200<BR>
-	  可創立血盟工程宣戰，所有傷害提升30%</span><BR>
-	  <span style="color:red;">◎王族天賦◎</span><br>
+	  <span style="color:red;">◎王族簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：3500<BR>
+	  可創立血盟攻城宣戰，升級血盟可強化盟友能力</span><BR>
+	  <span style="color:#CC0088">※王族傷害提升30%</span><BR>
+	  <BR><span style="color:red;">◎王族天賦◎</span><br>
       <span style="color:#66CC00">【金剛護體】</span><br>
       被攻擊時有機率[無敵]1秒，每加1點發動率增加1%。<br>
       <span style="color:#66CC00">【暴君血脈】</span><br>
@@ -304,8 +305,10 @@
       增加武器屬性卷軸發動率，每加1點發動率增加2%<br>
       <span style="color:#66CC00">【帝王祝福】</span><br>
       每加1點道具與技能的補血量提高+8%,<br>
-
-
+	  ------------------------------------------<BR>
+	  <BR><span style="color:red;">◎騎士簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：3800<BR>
+	  <span style="color:#CC0088">※反擊屏障機率30%、傷害武器*4，遠攻也能觸發</span><br>
       <br><span style="color:red;">◎騎士天賦◎</span><br>
       <span style="color:#66CC00">【魔武專精】</span><br>
       增加武器的魔法傷害，每加1點魔法武器傷害增加8%。<br>
@@ -316,8 +319,11 @@
       血量低於50%有機率造成3倍普攻傷害，每加1點發動率+2%。<br>
       <span style="color:#66CC00">【神聖壁壘】</span><br>
       面對正前方三個面向的攻擊，有機率發動50%傷害減免，每加1點發動率增加2%。<br>
-	  <span style="color:#CC0088">※反擊屏障遠攻也能觸發</span><br>
-	  
+
+	  ------------------------------------------<BR>
+	  <BR><span style="color:red;">◎妖精簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：3000<BR><BR>
+	  <span style="color:#CC0088">※強化強力屬性精靈</span><br>
       <br><span style="color:red;">◎妖精天賦◎</span><br>
       <span style="color:#66CC00">【射擊之箭】</span><br>
       三重矢附加目標當前生命3%的隨機傷害，最少造成技能點*10傷害，每加1點發動率增加1%。<br>
@@ -331,7 +337,10 @@
       每加1點發動率+1%。<br>
       <span style="color:#66CC00">【傷害穿透】</span><br>
       機率造成無視物理防禦，每加1點發動率加2%。<br>
-
+	  ------------------------------------------<BR>
+	  <BR><span style="color:red;">◎法師簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：2900<BR><BR>
+	  <span style="color:#CC0088">※究光機率紫爆傷害加倍</span><br>
       <br><span style="color:red;">◎法師天賦◎</span><br>
       <span style="color:#66CC00">【致命一擊】</span><br>
       施放傷害魔法有機率無視對方抗魔，每加1點發動率+2%。<br>
@@ -346,7 +355,9 @@
       <span style="color:#66CC00">【召喚強化】</span><br>
       黑豹平均強度每加1點整體提升約8%，10級進化武裝黑豹最多可召喚兩隻，同時解鎖終極召喚<br>
 	  <span style="color:#CC0088">※究光機率紫爆傷害加倍</span><br>
-
+	  ------------------------------------------<BR>
+	  	  <BR><span style="color:red;">◎黑妖簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：3200<BR><BR>
       <br><span style="color:red;">◎黑妖天賦◎</span><br>
       <span style="color:#66CC00">【背刺襲擊】</span><br>
       在目標敵人後三個面向攻擊，會造成加成傷害，每加1點增加10%傷害。<br>
@@ -357,8 +368,11 @@
       <span style="color:#66CC00">【刀劍之影】</span><br>
       日光術作為(啟動/關閉)<br>
       開啟後每下攻擊扣(2*技能點)魔力，並造成無視防禦(10+技能點*10%力量)傷害。<br>
-	  
-      <br><span style="color:red;">◎龍騎天賦◎</span><br>
+	  ------------------------------------------<BR>
+	  <BR><span style="color:red;">◎龍騎士簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：3500<BR><BR>
+	  <span style="color:#CC0088">※弱點曝光同時提高普攻傷害</span><br>
+      <br><span style="color:red;">◎龍騎士天賦◎</span><br>
       <span style="color:#66CC00">【屠宰擊殺】</span><br>
       屠宰者附加目標當前生命3%的隨機傷害，最少造成技能點*10傷害，每加1點發動機率增加2%。<br>
       <span style="color:#66CC00">【乾坤挪移】</span><br>
@@ -367,11 +381,12 @@
       強化自身減傷，每加1點受到的所有傷害減免1.5%。<br>
       <span style="color:#66CC00">【嗜殺血脈】</span><br>
       目標血量低於50%時自身攻擊提升，每加1點整體攻擊力提升3%。<br>
-	  <span style="color:#CC0088">※弱點曝光同時提高普攻傷害</span><br>
-	  
-      <br><span style="color:red;">◎幻術天賦◎</span><br>
+	  ------------------------------------------<BR>
+	  <BR><span style="color:red;">◎幻術師簡介◎</span><br>
+	  <span class="data-block">基礎生命上限：3100<BR><BR>
+      <br><span style="color:red;">◎幻術師天賦◎</span><br>
       <span style="color:#66CC00">【心靈破壞】</span><br>
-      增加心靈破壞的傷害，每加1點傷害與耗魔增加30。<br>
+      增加心靈破壞的傷害，每加1點傷害與耗魔附加15%智力。<br>
       <span style="color:#66CC00">【毀壞之身】</span><br>
       增加骷髏毀壞命中率，每加1點機率增加2%。<br>
       <span style="color:#66CC00">【痛苦化身】</span><br>
@@ -676,12 +691,13 @@ function sleep(ms) {
   <div class="content" id="content">
     <div class="data-block">請選擇上方資料按鈕</div>
   </div>
-		  <!-- 贊助入口 -->
+		  <!-- 贊助入口 
 <div class="donate-box">
   <button class="donate-btn" onclick="document.getElementById('donateModal').style.display='block'">
     ✨ Donate ✨
   </button>
 </div>
+-->
 </body>
 </html>
 
