@@ -160,6 +160,54 @@
       text-align: center;
       padding: 3rem 0;
     }
+	.h2-black {
+      font-size: 1.5rem;
+      color: black;
+      text-align: center;
+      padding: 3rem 0;
+    }
+	/* 樣式 C：經典榮耀金 (適合 "天堂" 經典風格文字)
+     特色：金黃字 + 黑色強陰影。
+     效果：還原舊版天堂介面風格，非常有懷舊感。
+  */
+  .text-gold {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffcc00;           /* 金黃色 */
+    text-align: center;
+    padding: 1rem 0;
+    /* 關鍵：純黑色陰影，增加厚重感 */
+    text-shadow: 2px 2px 0 #000000;
+  }
+  /* 樣式 B：熱血紅副標題 (適合強調 "免課金"、"活動")
+     特色：鮮紅字 + 白色硬邊描邊。
+     效果：像漫畫標語一樣清楚，不會被背景雜色干擾。
+  */
+  .subtitle-red {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #cc0000;           /* 鮮紅色 */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    /* 關鍵：利用四個方向的陰影模擬描邊 (Stroke) */
+    text-shadow: 
+      -2px -2px 0 #ffffff,  
+       2px -2px 0 #ffffff,
+      -2px  2px 0 #ffffff,
+       2px  2px 0 #ffffff;
+  }
+  .title-main {
+    font-size: 1.5rem;          /* 字體大小，可依需求調整 */
+    font-weight: 900;         /* 極粗體 */
+    color: #773322;           /* 深海藍 */
+    text-align: center;
+    margin: 2rem 0;           /* 上下留白 */
+    /* 關鍵：多層陰影疊加，先用白色做光暈，再用黑色做立體 */
+    text-shadow: 
+      0 0 10px #ffffff, 
+      0 0 20px #ffffff, 
+      2px 2px 5px rgba(0, 0, 0, 0.6);
+  }
   
   @keyframes blink {
     0% { opacity: 1; }
@@ -701,7 +749,21 @@ function sleep(ms) {
 
   <!-- 下方：內容區塊 -->
   <div class="content" id="content">
-    <div class="data-block">請選擇上方資料按鈕</div>
+    <div class="title-main">20年過去了，我們都長大了。 或許你現在忙著工作、忙著顧家，不再有當年通宵練功的體力。 但心中的那股熱血，是不是還沒熄滅？
+<BR>
+如果你想回味一下曾經的天堂，忙裡偷閒悠悠哉哉地遊玩， 歡迎！這裡，是專為「現在的你」打造的。
+<BR><BR>
+🔥 【上班族救星．內掛解放雙手】 不用擔心跟不上大部隊！完善的內掛系統，上班掛機、下班打王。不管是開會還是顧小孩，你的角色都在變強。<BR>
+<BR>
+💰 【拒絕課金戰士．農夫也能出頭天】 真正的「無課」友善環境！所有裝備、道具皆可透過打怪取得。沒有特權，只有滿腔實力的熱血。<BR>
+<BR>
+🛠️ 【獨家自創玩法．拒絕千篇一律】 玩膩了公式化的設定？我們擁有獨家開發的副本與活動，結合玩家建議持續優化。<BR>
+<BR>
+🤝 【細水長流．承諾長久營運】 我們不求牟利，只求一群老朋友開心。GM 就在你身邊，聽得見你的聲音，改得動遊戲的設定。<BR>
+<BR>
+<BR>
+
+</div>
   </div>
 		  <!-- 贊助入口 
 <div class="donate-box">
