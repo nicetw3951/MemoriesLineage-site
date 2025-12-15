@@ -293,7 +293,7 @@
   <script>
     // 全域變數宣告
 	//const List = ["與活動", "遊戲設定", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "娃娃介紹", "變身卡介紹", "贊助相關", "留言板", "疑難雜症"];
-    const List = ["更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹", "娃娃介紹", "下載專區", "贊助相關", "留言板", "疑難雜症", "待更新", "待更新", "待更新", "待更新", "待更新"];
+    const List = ["更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹", "娃娃介紹", "下載專區", "贊助相關", "留言板", "疑難雜症", "推廣相關", "待更新", "待更新", "待更新", "待更新"];
 	// 留言板API
 	const API_URL = "https://script.google.com/macros/s/AKfycbw9mAM_Br8ZlFn5CWL0E9Q3JSkHilINtl0R9-B-G_ipeGrUuoxVP0JWSwJ6X1b6oiXT/exec";
     // 背景刷新
@@ -304,6 +304,14 @@
       `<span class="h2-blue">★★ 開服時間： 2025/12/12 17:00 ★★</span><br>
 	  <br><span class="h2-red">開服衝等活動<br>
       <span class="data-block">系統自動發放，各職業前5名首次到達90等獎勵500元寶，全職業前10名首次到達99等獎勵1000元寶</span><BR>
+	  <br><span class="h2-green">部分錯誤修正<br>
+      <span class="data-block">古老皮盔甲修正為仿正服使用職業，部分古老裝備開放其他職業使用，可於展示區查看。<BR>
+	  魔法娃娃強化藥水，公主機率誤植，強化機率為50%<BR>
+	  傲慢強化水晶卷軸，補上文字說明<BR>
+	  </span><BR>
+	  <br><span class="h2-blue">★★ 2025/12/15 更新內容 ★★</span><br>
+	  <span class="h2-red">開放推廣獎勵<br>
+      <span class="data-block">於推廣相關頁面查看推廣獎勵與方式。</span><BR>
 	  <br><span class="h2-blue">★★ 2025/12/13 更新內容 ★★</span><br>
 	  <span class="h2-red">寵物強化<br>
       <span class="data-block">寵物攜帶數量為(角色魅力+隱藏魅力)/6，攜帶寵物數量最多5隻<BR>寵物等級上限70等且能力提升，進化後寵物強度翻倍。</span><BR>
@@ -330,7 +338,7 @@
 	  <span class="h2-red">轉生能力點</span><br>
       <span class="data-block">轉生後可獲得3點，選擇提升能力值</span><BR>
 	  <span class="h2-red">休息系統<br>
-      <span class="data-block">待在安全區域或安全區域內離線，即可累積經驗加倍</span><BR>
+      <span class="data-block">角色待在安全區域，可累積經驗祝福</span><BR>
 	  <span class="h2-red">狩獵任務</span><br>
       <span class="data-block">每日重置，完成任務獎勵：元寶*50、懷舊代幣*50、金幣15萬</span><BR>
 	  <span class="h2-red">無限大戰</span><br>
@@ -349,8 +357,8 @@
 	  <span class="data-block">開立商店後離線，依然會持續掛賣，且不會占用IP上限數量。</span><BR>
 	  <span class="h2-red">過安定武防加成</span><br>
 	  <span class="data-block">每過1安定值，額外提升數值。</span><BR>
-	  <span class="h2-red">道具技能</span><br>
-	  <span class="data-block">多種技能開發，提高遊戲樂趣</span><BR>
+	  <span class="h2-red">道具技能卡</span><br>
+	  <span class="data-block">多種技能，提高遊戲樂趣</span><BR>
 	  <span class="h2-red">道館挑戰</span><br>
 	  <span class="data-block">可多人挑戰，每場10位BOSS，挑戰結束後需等待十分鐘</span><BR>
 	  <span class="h2-red">裝備祝福系統</span><br>
@@ -625,12 +633,43 @@
 	  `<span class="h2-red">開服需要成本，小小贊助即可，用以維護伺服器<BR>
 	  元寶比值1:50，請聯繫LINE客服確認與發放元寶<BR>
 	  只接受小額贊助，最多接受1000元贊助<BR>
-	  可點擊右下Donate按鈕，即可使用LINEPAY贊助<BR>`,
+	  可點擊右下Donate按鈕，即可使用LINEPAY贊助</span><BR>
+	  <span class="h2-blue"><BR>如須匯款服務，可聯繫管理員開單<BR>
+	  LINE管理員:@774twnfm</span><BR>
+	  `,
 	  // 留言板
       "__ONLINE_COMMENT__",
 	  // 疑難雜症
 	  "疑難雜症",
-	  "待更新","待更新","待更新","待更新","待更新"
+	  `
+	  <span class="h2-red">每日推廣</span><BR>
+	  <BR><span class="h2-blue">加入管理員 @774twnfm 官方帳號<BR>
+	  在5個論壇裡的懷舊天堂主文下，回復推文並附上截圖LINE給管理員<BR>
+	  一個論壇推文50個懷舊代幣，五個論壇推文250個代幣及加碼50個元寶<BR>
+	  審核需要時間，請大家耐心等待。(一個IP限領取一次)</span><BR>
+	  <BR><span class="h2-red">推廣論壇連結</span><BR>
+	  	<button class="download-btn" onclick="window.open('https://lineage45.com/forum.php?mod=viewthread&tid=287992&extra=page%3D1','_blank')">
+      網站1
+    </button>
+	  	<button class="download-btn" onclick="window.open('https://142game.com/thread-136325-1-1.html','_blank')">
+      網站2
+    </button>
+		  	<button class="download-btn" onclick="window.open('https://lineage-game.com/viewthread.php?tid=929330&extra=page%3D2','_blank')">
+      網站3
+    </button>
+		  	<button class="download-btn" onclick="window.open('https://lineage.touhou-wiki.com/forum.php?mod=viewthread&tid=764835&extra=page%3D1','_blank')">
+      網站4
+    </button>
+		  	<button class="download-btn" onclick="window.open('https://game155.com/forum.php?mod=viewthread&tid=375449&extra=page%3D1%26filter%3Dsortid%26sortid%3D2','_blank')">
+      網站5
+    </button><BR>
+	  <BR><span class="h2-red">┌推文範例┐</span><BR>
+	  <BR><span class="h2-green">ID：線上GM</span><span class="h2-red">(ID更換為個人ID)</span><BR>
+	  <span class="h2-green">日期：12/15</span><span class="h2-red">(日期更換推廣當天日期)</span><BR>
+	  </span>
+	  
+	  `,
+	  "待更新","待更新","待更新","待更新"
     ];
 
     function showData(index) {
@@ -802,12 +841,13 @@ function sleep(ms) {
 
 </div>
   </div>
-   <!-- 推廣入口 -->
+   <!-- 推廣入口 
 <div class="Show-Site">
   <a href="https://www.gamex123.com/lineage.html" target="_blank">
     <img src="https://www.gamex123.com/images/slog.gif" alt="推廣按鈕" class="promo-btn">
   </a>
 </div>
+-->
 
 		  <!-- 贊助入口 
 <div class="donate-box">
