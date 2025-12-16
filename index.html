@@ -133,13 +133,13 @@
       font-size: 1.2rem;
       color: #333;
       text-align: center;
-      padding: 3rem 0;
+      padding: 1.5rem 0;
     }
     .h2-red {
       font-size: 1.5rem;
       color: red;
       text-align: center;
-      padding: 3rem 0;
+      padding: 1.5rem 0;
     }
 	.alert {
     color: green;
@@ -152,19 +152,19 @@
       font-size: 1.3rem;
       color: blue;
       text-align: center;
-      padding: 3rem 0;
+      padding: 1.5rem 0;
     }
 	.h2-green {
       font-size: 1.3rem;
       color: green;
       text-align: center;
-      padding: 3rem 0;
+      padding: 1.5rem 0;
     }
-	.h2-black {
-      font-size: 1.5rem;
-      color: black;
+	.h2-purple {
+      font-size: 1.7rem;
+      color: purple;
       text-align: center;
-      padding: 3rem 0;
+      padding: 0.1rem 0;
     }
 	/* 樣式 C：經典榮耀金 (適合 "天堂" 經典風格文字)
      特色：金黃字 + 黑色強陰影。
@@ -536,6 +536,32 @@
       <span class="data-block">夢幻之島蒐集純白萬能藥可以製作</span><br>
 	  <br><span class="h2-red">商店交易貨幣</span><br>
       <span class="data-block">開設商店專用交易貨幣1:1000金幣，可以更好的交易高單價商品</span><br>
+	  <br><span class="h2-red">四屬性武器卷軸</span><br>	  
+	  <span class="h2-blue">※火屬性※</span><br>
+	  <span class="data-block">
+		Lv1.火之：攻擊6%機率造成1.2倍傷害<br>
+		Lv2.烈焰：攻擊7%機率造成1.4倍傷害<br>
+		Lv3.火靈：攻擊8%機率造成1.6倍傷害<br>
+		Lv4.赤炎：攻擊9%機率造成1.8倍傷害<br>
+		Lv5.火魂：攻擊10%機率造成2.0倍傷害</span><br>
+	  <span class="h2-blue">※地屬性※</span><br>
+	  <span class="data-block">Lv1.地之：5%機率造成定身效果0.3秒<br>
+		Lv2.崩裂：攻擊5%機率造成定身效果0.6秒<br>
+		Lv3.地靈：攻擊5%機率造成定身效果0.9秒<br>
+		Lv4.地裂：攻擊5%機率造成定身效果1.2秒<br>
+		Lv5.地魂：攻擊5%機率造成定身效果1.5秒</span><br>
+	  <span class="h2-blue">※風屬性※</span><br>
+	  <span class="data-block">Lv1.風之：攻擊30%機率造成2x2範圍的40點傷害<br>
+		Lv2.暴風：攻擊35%機率造成2x2範圍的60點傷害<br>
+		Lv3.風靈：攻擊40%機率造成3x3範圍的80點傷害<br>
+		Lv4.蒼嵐：攻擊45%機率造成3x3範圍的100點傷害<br>
+		Lv5.風魂：攻擊50%機率造成4x4範圍的120點傷害</span><br>
+	  <span class="h2-blue">※水屬性※</span><br>
+	  <span class="data-block">Lv1.水之：攻擊6%機率回復4點魔力<br>
+		Lv2.海嘯：攻擊7%機率回復6點魔力<br>
+		Lv3.水靈：攻擊8%機率回復8點魔力<br>
+		Lv4.霜凍：攻擊9%機率回復10點魔力<br>
+		Lv5.水魂：攻擊10%機率回復12點魔力</span><br>
 	  <br><span class="h2-red">洗鍊武防品階卷軸</span><br>	  
 		<span class="h2-blue">※廢品※</span><br>
 		<span class="data-block">武器:傷害-2、命中-2、魔攻-2、力敏智-2、生命魔力-50</span><br>
@@ -721,7 +747,7 @@
 		}
 		// 一般文字版面
 		content.innerHTML = `
-		  <div class="data-block">
+		  <div class="h2-purple">
 			<h2>${title}</h2>
 			<div style="margin-top: 1rem; text-align: left;">
 			  <p>${text}</p>
@@ -821,10 +847,10 @@ function sleep(ms) {
 
   <!-- 下方：內容區塊 -->
   <div class="content" id="content">
-    <div class="title-main">20年過去了，我們都長大了。 或許你現在忙著工作、忙著顧家，不再有當年通宵練功的體力。 但心中的那股熱血，是不是還沒熄滅？<BR>
+    <div class="title-main"><BR>20多年過去了，我們都長大了。 或許你現在忙著工作、忙著顧家，不再有當年通宵練功的體力。 但心中的那股熱血，是不是還沒熄滅？<BR>
 <BR>
-如果你想回味一下曾經的天堂，忙裡偷閒悠悠哉哉地遊玩， 歡迎！這裡，是專為「現在的你」打造的。
-<BR><BR>
+如果你想回味一下曾經的天堂，忙裡偷閒悠悠哉哉地遊玩， 歡迎！這裡，是專為「現在的你」打造的。<BR>
+<BR>
 🔥 【上班族救星．內掛解放雙手】 🔥<BR>
 不用擔心跟不上大部隊！完善的內掛系統，上班掛機、下班打王。不管是開會還是顧小孩，你的角色都在變強。<BR>
 <BR>
