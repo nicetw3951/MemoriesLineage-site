@@ -293,11 +293,13 @@
   <script>
     // 全域變數宣告
 	//const List = ["與活動", "遊戲設定", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "娃娃介紹", "變身卡介紹", "贊助相關", "留言板", "疑難雜症"];
-    const List = ["更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹", "娃娃介紹", "下載專區", "贊助相關", "留言板", "疑難雜症", "推廣相關", "待更新", "待更新", "待更新", "待更新"];
+    const List = ["更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹", "娃娃介紹", "下載專區", "贊助相關", "遊戲內容Q&A", "疑難雜症", "推廣相關", "待更新", "待更新", "待更新", "待更新"];
 	// 留言板API
 	const API_URL = "https://script.google.com/macros/s/AKfycbw9mAM_Br8ZlFn5CWL0E9Q3JSkHilINtl0R9-B-G_ipeGrUuoxVP0JWSwJ6X1b6oiXT/exec";
     // 背景刷新
 	let commentInterval = null;
+	let currentQuestionId = null;
+
 	// 對應的內容
     const DATA = [
       // 更新與活動內容 
@@ -629,7 +631,6 @@
       兩秒內持續施放相同魔法增加傷害(最高疊加至4層)，每加1點每層傷害*1%。<br>
       <span style="color:#66CC00">【召喚強化】</span><br>
       黑豹平均強度每加1點整體提升約8%，10級進化武裝黑豹最多可召喚兩隻，同時解鎖終極召喚<br>
-	  <span style="color:#CC0088">※究光機率紫爆傷害加倍</span><br>
 	  ------------------------------------------<BR>
 	  	  <BR><span style="color:red;">◎黑妖簡介◎</span><br>
 	  <span class="data-block">基礎生命上限：3200<BR>
@@ -1016,32 +1017,43 @@
 			clearInterval(commentInterval);
 			commentInterval = null;
 		  }
-		// 顯示留言板
-		if (text === "__ONLINE_COMMENT__") {
-		  content.innerHTML = `
-			<div class="data-block"><h2>留言板(玩家交流、遊戲建議)</h2></div>
+		// 顯示留言板(Q&A)
+if (text === "__ONLINE_COMMENT__") {
+  content.innerHTML = `
+    <div class="data-block"><h2>遊戲內容Q&A 問答板 (提問 / 回覆)</h2></div>
 
-<textarea id="msgInput" 
-          style="width:50%; height:25px; resize:none;" 
-          onkeydown="if(event.key==='Enter'){event.preventDefault();}"></textarea>
-			<br><button onclick="sendComment()" 
-					style="margin-top:10px; padding:10px 16px;">
-			  發佈留言
-			</button>
+<!-- 提問區 -->
+<input id="visitorName" placeholder="暱稱 (玩家)" style="width:30%; margin-bottom:5px;">
+<br>
+<textarea id="questionInput" style="width:50%; height:50px; resize:none;" placeholder="請輸入你的問題"></textarea>
+<br>
+<button onclick="sendQuestion()" style="margin-top:10px; padding:10px 16px;">發佈問題</button><BR>
 
-			<div id="msgList" style="margin-top:20px;"></div>
-			<!-- 贊助入口 -->
-<div class="donate-box">
-  <button class="donate-btn" onclick="document.getElementById('donateModal').style.display='block'">
-    ✨ Donate ✨
-  </button>
-</div>
-		  `;
-		  loadComments();
-		  // 每 10 秒自動刷新
-			commentInterval = setInterval(loadComments, 10000);
-		  return;
-		}
+<!-- 回答區 -->
+<input id="answerName" placeholder="暱稱 (玩家)" style="width:30%; margin-top:20px;">
+<br>
+<textarea id="answerInput" style="width:50%; height:50px; resize:none;" placeholder="請輸入你的回答"></textarea>
+<br>
+<button onclick="sendAnswer()" style="margin-top:10px; padding:10px 16px;">發佈回答</button>
+
+<!-- 顯示問答列表 -->
+<div id="qaList" style="margin-top:20px;"></div>
+
+
+    <!-- 贊助入口 -->
+    <div class="donate-box">
+      <button class="donate-btn" onclick="document.getElementById('donateModal').style.display='block'">
+        ✨ Donate ✨
+      </button>
+    </div>
+  `;
+// 每 10 秒自動刷新
+setInterval(loadQA, 10000);
+loadQA();
+
+  return;
+}
+
 		// 開啟疑難雜症新視窗
 		if (title === "疑難雜症") {
 		  window.open("F&Q.html", "_blank", "width=800,height=600");
@@ -1125,6 +1137,99 @@ async function loadComments() {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+// 提問
+async function sendQuestion() {
+  const visitor = document.getElementById("visitorName").value || "匿名";
+  const question = document.getElementById("questionInput").value.trim();
+  if (!question) return alert("請輸入問題");
+
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({ visitor, question })
+  });
+  document.getElementById("questionInput").value = "";
+  loadQA();
+}
+
+// 選擇要回答的問題
+function prepareAnswer(qid) {
+  currentQuestionId = qid; // UUID
+  alert("你正在回答問題 ID: " + qid);
+}
+
+// 發送回答
+async function sendAnswer() {
+  if (!currentQuestionId) return alert("請先選擇要回答的問題");
+  const answerer = document.getElementById("answerName").value || "玩家";
+  const answer = document.getElementById("answerInput").value.trim();
+  if (!answer) return alert("請輸入回答");
+
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({ answerer, answer, questionId: currentQuestionId })
+  });
+  document.getElementById("answerInput").value = "";
+  loadQA();
+}
+
+// 讀取問答（支援多個回答，身份過濾 + 時間顯示在提問者前方）
+async function loadQA() {
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    const qaList = document.getElementById("qaList");
+
+    qaList.innerHTML = data.map(item => {
+      // 處理回答列表
+      const answersHtml = (item.answers && item.answers.length > 0)
+        ? item.answers.map(a => {
+            // 身份過濾邏輯
+            let displayName = a.answerer;
+            let displayColor = "black";
+
+            if (a.answerer === "懷舊板主") {
+              // 顯示時套用紅色字，並偷偷改成 "板主"
+              displayName = "板主";
+              displayColor = "red";
+            } else if (a.answerer === "板主") {
+              // 如果只有 "板主"，則改成 "玩家"
+              displayName = "玩家";
+              displayColor = "black";
+            }
+
+            return `
+              <div style="margin-left:20px; margin-top:5px;">
+                <b>${displayName} 回覆：</b>
+                <span style="color:${displayColor};">
+                  ${a.answer}
+                </span>
+                <small style="margin-left:10px;">${new Date(a.time).toLocaleString()}</small>
+              </div>
+            `;
+          }).join("")
+        : `<div style="margin-left:20px; margin-top:5px; color:#999;"><i>尚未有人回覆</i></div>`;
+
+      // 組合問題區塊（時間顯示在提問者前方）
+      return `
+        <div style="padding:10px; border-bottom:1px solid #ddd;">
+          <small>${new Date(item.time).toLocaleString()}</small>
+          <b> ${item.visitor}</b> 問：<br>
+          <div style="margin-left:20px; color:#333;">${item.question}</div>
+          ${answersHtml}
+          <br>
+          <button onclick="prepareAnswer('${item.id}')">回答這個問題</button>
+        </div>
+      `;
+    }).join("");
+
+  } catch(err) {
+    console.log("讀取Q&A失敗:", err);
+  }
+}
+
+
+
+
   </script>
 </head>
 <body>
