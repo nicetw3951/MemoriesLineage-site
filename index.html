@@ -1212,12 +1212,12 @@ async function loadQA() {
             let displayName = a.answerer;
             let displayColor = "black";
 
-            if (a.answerer === "懷舊板主") {
-              // 顯示時套用紅色字，並偷偷改成 "板主"
-              displayName = "板主";
+            if (a.answerer === "<懷舊GM>") {
+              // 顯示時套用紅色字，並偷偷改成 "GM"
+              displayName = "GM";
               displayColor = "red";
-            } else if (a.answerer === "板主") {
-              // 如果只有 "板主"，則改成 "玩家"
+            } else if (a.answerer === "GM") {
+              // 如果只有 "GM"，則改成 "玩家"
               displayName = "玩家";
               displayColor = "black";
             }
