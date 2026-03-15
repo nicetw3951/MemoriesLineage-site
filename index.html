@@ -1266,20 +1266,19 @@ async function loadQA() {
     const data = await res.json();
     const qaList = document.getElementById("qaList");
 
+    // 依照時間排序（最新在上方）
+    data.sort((a, b) => new Date(b.time) - new Date(a.time));
+
     qaList.innerHTML = data.map(item => {
-      // 處理回答列表
       const answersHtml = (item.answers && item.answers.length > 0)
         ? item.answers.map(a => {
-            // 身份過濾邏輯
             let displayName = a.answerer;
             let displayColor = "black";
 
             if (a.answerer === "<懷舊GM>") {
-              // 顯示時套用紅色字，並偷偷改成 "GM"
               displayName = "GM";
               displayColor = "red";
             } else if (a.answerer === "GM") {
-              // 如果只有 "GM"，則改成 "玩家"
               displayName = "玩家";
               displayColor = "black";
             }
@@ -1296,7 +1295,6 @@ async function loadQA() {
           }).join("")
         : `<div style="margin-left:20px; margin-top:5px; color:#999;"><i>尚未有人回覆</i></div>`;
 
-      // 組合問題區塊（時間顯示在提問者前方）
       return `
         <div style="padding:10px; border-bottom:1px solid #ddd;">
           <small>${new Date(item.time).toLocaleString()}</small>
@@ -1313,6 +1311,7 @@ async function loadQA() {
     console.log("讀取Q&A失敗:", err);
   }
 }
+
 
 
 
