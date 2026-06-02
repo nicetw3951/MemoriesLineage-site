@@ -303,7 +303,12 @@
 	// 對應的內容
     const DATA = [
       // 更新與活動內容  
-      `
+      `<button class="download-btn" onclick="openClanComeIn()">※※AT團申請※※</button><BR><BR>
+	  <span class="h2-blue">★★ 2026/06/02 更新內容 ★★</span><br>
+	  <span class="data-block">九點大逃殺活動，新增左右木頭人旁，出現大逃殺報名NPC，分散人員壅擠狀況<BR>
+	  進入大逃殺活動後，寵物與召喚物會回收，避免造成主城壅擠<BR>
+	  開放AT團申請物資<BR>
+	  </span><BR>
 	  <span class="h2-blue">★★ 2026/05/31 更新內容 ★★</span><br>
 	  <span class="data-block">新增WHO頁面的個人開關設定、自動練功設定會自動儲存<BR>
 	  </span><BR>
@@ -737,7 +742,7 @@
 	  50等開始會有能力點，到99等共計49點<BR>
 	  升級配點單屬性上限至25，萬能藥單屬性可提升上限至35點(萬能藥使用無上限)，回憶蠟燭可配置上限至35點<BR>
 	  首次99等系統贈送回憶蠟燭(使用回憶蠟燭後會自動完美洗血洗魔，轉生後不可使用)，可在轉生前配置自己的喜好，體質、精神越高，升級給予的生命、魔力越高</span><BR>
-	  <br><span class="h2-blue">轉生:十轉<br>轉生後保留當前15%生命與魔力<BR>經驗:2000倍<br>金幣:5倍<br>道具2倍<br>負重5倍<br>衝裝機率提高10%<br>IP上限3開<BR>每週五重啟後經驗提升50%，持續到週日17:00重啟後結束</span><BR>
+	  <br><span class="h2-blue">轉生:十轉<br>轉生後保留當前15%生命與魔力<BR>經驗:2000倍<br>金幣:5倍<br>道具2倍<br>負重5倍<br>衝裝機率提高10%<br>IP上限3開<BR>每週五重啟後經驗提升100%，持續到週日17:00重啟後結束</span><BR>
 	  `,
       // 特色介紹
 	  `
@@ -1238,9 +1243,14 @@
     </span>
     `,
 	  // 贊助相關
-	  `<span class="h2-red">開服需要成本，小小贊助即可，用以維護伺服器<BR>
-	  請聯繫LINE客服選擇贊助方式<BR>
-	  只接受小額贊助，感謝大家支持。</span><BR>
+	  `
+	  <button class="download-btn" onclick="openDisclaimer()">
+		※※免責聲明※※
+		</button><BR>
+	  <span class="h2-red">開服需要成本，小小贊助即可，用以維護伺服器<BR>
+	  請聯繫LINE客服提供贊助方式<BR>
+	  只接受小額贊助，感謝大家支持。​​<BR>
+	  請玩家確認是出自於個人意願贊助伺服器，贊助後無法退費。</span><BR>
 	  <span class="h2-blue">LINE管理員:@774twnfm<BR>
 	  或按右下Donate按鈕掃描QR碼</span><BR><BR>
 	  <span class="h2-purple">贊助方案選擇如下：<BR>
@@ -1386,6 +1396,43 @@ async function loadComments() {
     console.log("讀取留言失敗:", err);
   }
 }
+
+function openClanComeIn() {
+  let popup = window.open("", "Disclaimer", "width=500,height=400");
+  popup.document.write(`
+    <html>
+      <head><title>AT團申請</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※AT團申請※※</h2>
+        <p>1.人數至少5人加入LINE群組，並創立好血盟，AT成員需加入血盟。</p>
+        <p>2.留言血盟名稱與標註GM、AT成員在社群的名子，查核血盟與LINE群組後，依照人數發放禮包。</p>
+		<p>3.一個LINE帳號只可領取一份AT團禮包，一個角色只能開啟一個AT禮包，角色超過5轉無法開啟禮包。</p>
+		<p>4.人數若有增加，可再次申請，核對人數後會補發差額的禮包。EX 上次申請10人、這次申請12人，補發2包禮包</p>
+		<p>5.禮包內容物: +8新手武器製作圖紙、AT新手護身符(3日綁)、金幣*5百萬、懷舊代幣(綁)*250、巧克力蛋糕(綁定)*100、名譽貨幣(綁定)*100、經驗藥水200%(綁)*100</p>
+		<p>AT新手護身符(3日)效果:血量+300、魔量+200、經驗+20%、回血+10、回魔、魔防、物減、魔減都+5、力、敏、智、近傷、近命、遠傷、遠命、魔攻都+2、防禦-2、</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+
+function openDisclaimer() {
+  let popup = window.open("", "Disclaimer", "width=500,height=400");
+  popup.document.write(`
+    <html>
+      <head><title>免責聲明</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※免責聲明※※</h2>
+		<h2 style="color:#cccc00; text-align:center;"><p>【私下交易免責與電磁紀錄聲明】<p></h2>
+        <p>本伺服器絕對不干涉、不鼓勵且不保障玩家間的任何私下交易行為（包含但不限於帳號買賣、虛寶與現實金錢之交易）。</p>
+        <p>玩家進行私下交易需自行承擔受騙、詐欺等一切衍生風險。若因私下交易產生任何糾紛，一概不介入處理，<BR>
+        並且有權拒絕提供伺服器電磁紀錄、資料庫日誌或連線IP供玩家查詢或比對。請玩家務必提高警覺，謹慎交易。</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+
   function getVisitorID() {
   let id = localStorage.getItem("visitor_id");
   
