@@ -303,7 +303,12 @@
 	// 對應的內容
     const DATA = [
       // 更新與活動內容  
-      `<button class="download-btn" onclick="openClanComeIn()">※※AT團申請※※</button><BR><BR>
+      `<span class="h2-red">《《 常駐活動 》》</span><br>
+	  <button class="download-btn" onclick="openClanComeIn()">※※AT團申請※※</button>
+	   <button class="download-btn" onclick="">※※周六-八點攻城※※</button>
+	    <button class="download-btn" onclick="">※※每日九點大逃殺※※</button>
+	     <button class="download-btn" onclick="">※※每日九點半寶藏地宮※※</button>
+		  <button class="download-btn" onclick="">※※每日十點無限大賽※※</button><BR><BR>
 	  <span class="h2-blue">★★ 2026/06/03 更新內容 ★★</span><br>
 	  <span class="data-block">掛機與怪物行為模式優化<BR>
 	  掛機裝備若被脫下，會先自動裝備上次的武器，成功會繼續運行，失敗則停止掛機<BR>
@@ -656,10 +661,10 @@
 	  <span class="h2-block">新增贊助方案 1.新手基礎禮包100元 2.新手高階禮包1000元，</span><BR>
 	  <span class="h2-green">新手基礎禮包：</span><BR>
 	  <span class="data-block">+7新手商店武器製作圖紙(自選)、經驗娃娃LV4、VIP4、海音戰場徽章(第四階段)、傲慢的祝福水晶LV4、<BR>
-	  白娃娃30箱、白變身卡30箱、天幣500萬、1000元寶</span><BR>
+	  白娃娃30箱、白變身卡30箱、300%經驗藥水10瓶、天幣500萬、1000元寶</span><BR>
 	  <span class="h2-green">新手高階禮包：</span><BR>
-	  <span class="data-block">+8新手商店武器製作圖紙(自選)、經驗娃娃LV10、VIP9、精墓戰場徽章(滿階)、傲慢的祝福水晶LV9、<BR>
-	  名譽貨幣(永久)、巧克力蛋糕(永久)、白娃娃300箱、白變身卡300箱、天幣1億、1萬元寶<BR>
+	  <span class="data-block">+8新手商店武器製作圖紙(自選)、經驗娃娃LV10、VIP9、精墓戰場徽章(滿階)、傲慢的祝福水晶LV9、名譽貨幣(永久)<BR>
+	  巧克力蛋糕(永久)、白娃娃300箱、白變身卡300箱、300%經驗藥水100瓶、天幣1億、1萬元寶<BR>
 	  <BR>飾品套裝效果補上說明，請至飾品介紹查看<BR>
 	  無限大戰增加每關BOSS數量，最後一關更換新BOSS白騎士·匈雅提<br>
 	  </span>
@@ -1402,7 +1407,7 @@ async function loadComments() {
 }
 
 function openClanComeIn() {
-  let popup = window.open("", "Disclaimer", "width=500,height=400");
+  let popup = window.open("", "Disclaimer", "width=600,height=600");
   popup.document.write(`
     <html>
       <head><title>AT團申請</title></head>
