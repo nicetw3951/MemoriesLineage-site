@@ -272,9 +272,60 @@
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
-
+.download-btn:hover { background-color: #c82333; }
 .download-btn:hover {
   background-color: #218838; /* 深綠色 */
+  transform: scale(1.05);
+}
+/* 新增紅色按鈕 */
+.download-btn-red {
+  background-color: #dc3545; /* 鮮紅 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 5px 0 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.download-btn-red:hover {
+  background-color: #c82333; /* 深紅 */
+  transform: scale(1.05);
+}
+/* 橘色按鈕（深色文字） */
+.download-btn-orange {
+  background-color: #fd7e14; /* 鮮橘 */
+  color: #222; /* 深灰文字，比黑色柔和 */
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 5px 0 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+/* hover 效果：深橘 + 放大 */
+.download-btn-orange:hover {
+  background-color: #e96b00; /* 深橘 */
+  transform: scale(1.05);
+}
+/* 紫色按鈕 */
+.download-btn-purple {
+  background-color: #6f42c1; /* 紫色 */
+  color: #fff; /* 白字 */
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 5px 0 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* hover 效果：深紫 + 放大 */
+.download-btn-purple:hover {
+  background-color: #5a32a3; /* 深紫 */
   transform: scale(1.05);
 }
 .close {
@@ -303,13 +354,14 @@
 	// 對應的內容
     const DATA = [
       // 更新與活動內容  
-      `<span class="h2-red">《《 常駐活動 》》</span><br>
-	  <button class="download-btn" onclick="openClanComeIn()">※※AT團申請※※</button>
-	  <button class="download-btn" onclick="">※※周六八點奇岩攻城戰※※</button>
-	  <button class="download-btn" onclick="">※※每日九點大逃殺※※</button>
-	  <button class="download-btn" onclick="">※※每日九點半寶藏地宮※※</button>
-	  <button class="download-btn" onclick="">※※每日十點無限大賽※※</button>
-	  <button class="download-btn" onclick="">※※每日定時獎勵怪出沒※※</button><BR><BR>
+      `<span class="h2-red">《 常駐活動 》點擊查看</span><br>
+	  <button class="download-btn-purple" onclick="openAcademyBattle()">※新活動即將上線：『學院戰場封測版』 活動介紹※</button><BR>
+	  <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button>
+	  <button class="download-btn" onclick="openCastleWar()">※周六八點奇岩攻城戰※</button>
+	  <button class="download-btn" onclick="open9clockevent()">※每日九點大逃殺※</button>
+	  <button class="download-btn" onclick="open9clockhalfevent()">※每日九點半寶藏地宮※</button>
+	  <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
+	  <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button><BR><BR>
 
 	  <span class="h2-red">※※端午活動※※</span><br>
 	  <span class="h2-green">1.端午活動維持3周，於7/5重啟後關閉活動並回收道具：祭品-銀粽子<BR>
@@ -1491,6 +1543,113 @@ function openClanComeIn() {
 		<p>4.人數若有增加，可再次申請，核對人數後會補發差額的禮包。EX 上次申請10人、這次申請12人，補發2包禮包</p>
 		<p>5.禮包內容物: +8新手武器製作圖紙、AT新手護身符(3日綁)、金幣*5百萬、懷舊代幣(綁)*250、巧克力蛋糕(綁定)*100、名譽貨幣(綁定)*100、經驗藥水200%(綁)*100</p>
 		<p>AT新手護身符(3日)效果:血量+300、魔量+200、經驗+20%、回血+10、回魔、魔防、物減、魔減都+5、力、敏、智、近傷、近命、遠傷、遠命、魔攻都+2、防禦-2、</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+function openCastleWar() {
+  let popup = window.open("", "Disclaimer", "width=600,height=600");
+  popup.document.write(`
+    <html>
+      <head><title>攻城戰介紹</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※奇岩攻城戰(每週六重啟收回城堡)※※</h2>
+        <p>1.每周六晚間8點-9點為攻城戰時間，需擁有盟徽的血盟盟主，在無變身狀態，才可以對城堡宣戰。</p>
+        <p>2.破壞守護者之塔，塔底會有王冠(按右鍵挑選重疊物件)，盟主無變身且空手狀態攻擊王冠即可佔領城堡。</p>
+		<p>3.攻城期間可互相不斷佔領城堡，直至攻城時間結束，由最後佔領城堡的血盟攻下城堡。</p>
+		<p>4.攻下城堡的血盟線上成員，自動發放攻城獎勵(懷舊幣500、天幣300萬)，並獲得城堡附加能力。</p>
+		<p>5.攻城剛開始會有大量BOSS駐守城堡內，若未擊殺攻城結束後會自行離去。</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+function open9clockevent() {
+  let popup = window.open("", "Disclaimer", "width=600,height=600");
+  popup.document.write(`
+    <html>
+      <head><title>九點大逃殺</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※九點大逃殺活動※※</h2>
+        <p>1.每晚九點會廣播由傳送師或報名處NPC傳送進場。</p>
+        <p>2.第一階段秘境奪寶，5分鐘時間擊殺秘境怪物獲取道具，每100隻小怪死亡會呼喚BOSS蒞臨。</p>
+		<p>3.第二階段分兩個模式，分隊廝殺或是BOSS生存戰。</p>
+		<p>4.分隊廝殺會分為紅藍兩隊進行對戰，擊殺敵對可獲取團隊積分，殺光對方或廝殺到最後一刻，結算人數獲取獎勵</p>
+		<p>5.BOSS生存戰為團體生存，存活人數達標發放全體獎勵，成功擊殺第一隻BOSS且存活人數達標，全體額外獲取獎勵</p>
+		<p>6.活動結束後發放生存積分券，可至生存商店購買商品。</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+function open9clockhalfevent() {
+  let popup = window.open("", "Disclaimer", "width=600,height=600");
+  popup.document.write(`
+    <html>
+      <head><title>九點半寶藏地宮</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※九點半寶藏地宮※※</h2>
+        <p>1.每晚九點半，主城廣播某處出現兩個傳送陣(不同區域)，繳納100萬進場奪寶。</p>
+        <p>2.地圖內有寶藏怪物擊殺後獲取稀有道具，地圖內不可使用內掛。</p>
+		<p>3.剩餘怪物數量會在地圖內廣播通知，總數一百隻怪物，死亡後不再復活。</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+function open10clockevent() {
+  let popup = window.open("", "Disclaimer", "width=600,height=600");
+  popup.document.write(`
+    <html>
+      <head><title>十點無限大戰</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※十點無限大戰※※</h2>
+        <p>1.每晚10點-10點半可由傳送師進場，前十波會召喚低中高階BOSS，最後一波為最終BOSS。</p>
+        <p>2.初中高階BOSS分布在上右下方，最後一波則在中間，可依據自身能力討伐。</p>
+		<p>3.場內戰利品採平均分配制，造成傷害即可分配，餘數則依傷害排名順序分配。</p>
+		<p>4.場內可自由進出並且死亡無任何懲罰。</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+function openTimeClockevent() {
+  let popup = window.open("", "Disclaimer", "width=600,height=600");
+  popup.document.write(`
+    <html>
+      <head><title>定時獎勵怪出沒</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※定時獎勵怪出沒※※</h2>
+        <p>1.每日早晚3、6、9、12點及加碼晚上7、8、10、11點，會廣播100隻惡棍地痞在說話之島或海賊島出沒。</p>
+        <p>2.擊殺可獲取懷舊幣、元寶、與稀有道具，此為獎勵新手可輕易擊殺，未擊殺的惡棍地痞不會消失。</p>
+		<p>3.特別注意：內掛不會攻擊他、冰雪暴也無法傷害他。</p>
+        <button onclick="window.close()">關閉</button>
+      </body>
+    </html>
+  `);
+}
+function openAcademyBattle() {
+  let popup = window.open("", "Disclaimer", "width=1300,height=750");
+  popup.document.write(`
+    <html>
+      <head><title>『學院戰場封測版』 活動介紹</title></head>
+      <body style="font-family:Arial; padding:20px; line-height:1.6;">
+        <h2 style="color:red; text-align:center;">※※『學院戰場封測版』 活動介紹※※</h2>
+        <p>§請先找學院管理員選擇加入的學院，學院目前分為破軍學院、禦守學院，可在學院管理員查看學院能力。</p>
+        <p>§活動前五分鐘與開始前會廣播進入學院戰場，活動時間30分鐘，時間到地圖內所有人傳送回主城並結算積分。</p>
+		<p>§活動時間到的結算，積分才寫入學院紀錄提升位階，※請注意※結算時不在線上則無法寫入學院並且不會補發。</p>
+		<p>§結算方式除了個人積分外，學院積分30%做為擊殺獎勵積分，依照個人擊殺數與總擊殺數比例分配，70%為全學員均分，篩選出學院內活躍學員平分獎勵積分。</p>
+		<p>§活躍學員條件，每次進場後必須有獲取積分(第一次進場的50分不算)才會開始計時，離場後再進場也要再次獲取積分才會開始計時，在地圖內待滿15分鐘(死亡狀態不計算)才算是活躍學員(每達標1分鐘系統會提示)。</p>
+		<p>§學院戰場由傳送師進入，進場隨機傳送至地圖左側、下方、右側三個傳入點，當天第一次進場會獲取50點個人積分。</p>
+		<p>§活動期間可自由進出學院戰場，但只能透過傳入點位置的NPC對話離場(也可重登)。</p>
+		<p>§進場後玩家ID將會匿名，在地圖內!(大喊頻道)會暫時變更為學院頻道，僅有自己學院才可看到並提供位置。</p>
+		<p>§在地圖內同學院的戰友可幫對方施放聖結界，並且當周邊有三個隊友(包含自己)會獲取10秒學院神聖BUFF狀態(每五秒偵測一次)。</p>
+		<p>§禦守學院神聖BUFF-承受普攻傷害單次最高不超過10%自身最大生命值，但不會低於1000，15%機率受到普攻傷害時，傷害歸0並反擊傷害，傷害為原應承受的一半傷害值。</p>
+		<p>§破軍學院神聖BUFF-每下攻擊附加150點真實傷害，三重矢調整為每下附加50點，屠宰者不做調整，命中失敗時有25%變更為命中，若對方有禦守BUFF時，15%機率無視禦守BUFF打出原始傷害。</p>
+		<p>§學院戰場擊殺小怪個人積分+1點、擊殺小BOSS個人積分+5點、擊殺大BOSS個人積分+50分，學院積分+200分。</p>
+		<p>§學院戰場只會出現小怪，小BOSS每擊殺一名玩家才會召喚在隨機位置，大BOSS當擊殺玩家達50名，固定召喚在上方平台內，且只會召喚一次。</p>
+		<p>§擊殺玩家會奪取玩家30%積分，15%積分個人獲取，15%積分上繳學院積分，若連續擊殺同一名玩家並且對方積分未增減，無法再次奪取積分，戰場內死亡不會有其他處罰。</p>
         <button onclick="window.close()">關閉</button>
       </body>
     </html>
