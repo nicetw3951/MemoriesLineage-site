@@ -493,6 +493,16 @@ const DATA = [
       <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
       <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
       
+	  <span class="h2-blue">★★ 2026/09/12 更新內容 ★★</span><br>
+      <span class="data-block">騎士天賦：神聖壁壘-改為必定觸發，正面3方向傷害每點降低3%<BR>
+	  騎士天賦：聖法之盾-改為滿級後，即使魔力為0仍可降低25%傷害，開啟時會有特效顯示<BR>
+	  王族天賦：榮耀治癒-下修每點8%->4%，暴君血脈-開啟時會有特效顯示<BR>
+	  妖精天賦：精通能量-鋼鐵防護調整為觸發絕對防護傷害降為零，傷害穿透-近戰機率上調每點+2.5%<BR>
+	  黑妖天賦：背刺襲擊-傷害上調每點傷害10%->15%，劇毒強化-中毒傷害額外附加自身力量<BR>
+	  龍騎士天賦：強之護鎧-減傷上調每點降低提高1.5%->2%<BR>
+	  幻術天賦：痛苦化身-機率上調每點3%->5%，衝擊封印-機率上調每點1%->1.5%<BR>
+	  <BR>
+	  </span><BR>
 	  <span class="h2-blue">★★ 2026/09/08 更新內容 ★★</span><br>
       <span class="data-block">WHO頁面-個人選項，新增學院戰場特效開關<BR>
 	  優化畫面資訊過多時，會造成延遲的影響<BR>
@@ -1341,7 +1351,7 @@ const DATA = [
       <span style="color:#28a745; font-weight:bold;">【金剛護體】</span><br>
       被攻擊時有機率[無敵]1秒，每加1點發動率增加1%。<br>
       <span style="color:#28a745; font-weight:bold;">【暴君血脈】</span><br>
-      日光術作為(啟動/關閉)。<br>
+      日光術作為(啟動/關閉)，開啟時有特效顯示。<br>
       開啟後增加傷害，同時增加受到的傷害<br>
       每加1點傷害附加7%，受到的傷害提高3.5%。<br>
       持遠距武器附加傷害降低30%<BR>
@@ -1359,12 +1369,12 @@ const DATA = [
       增加武器的魔法傷害，每加1點魔法武器傷害增加8%。<br>
       <span style="color:#28a745; font-weight:bold;">【聖法之盾】</span><br>
       日光束作為(啟動/關閉)<br>
-      以魔力吸收25%傷害，每1級魔力吸收0.2點傷害，滿級時魔力不足(需大於0)仍可減免傷害。<br>
+      以魔力吸收25%傷害，每1級魔力吸收0.2點傷害，滿級時魔力即使為0，仍可減免25%傷害，開啟時有特效顯示。<br>
       <span style="color:#28a745; font-weight:bold;">【狂暴致命】</span><br>
       普攻機率造成1.5倍傷害，自身血量越低倍率越高，50%血量達上限3倍，每加1點發動率+2%。<br>
       計算公式=最大血量/當前血量×1.5倍<br>
       <span style="color:#28a745; font-weight:bold;">【神聖壁壘】</span><br>
-      面對正前方三個面向的攻擊，有機率發動50%傷害減免，每加1點發動率增加3%。<br></span>
+      面對正前方三個面向的攻擊，每加1點所有傷害降低3%。<br></span>
       ------------------------------------------<BR>
       <BR><span style="color:red; font-size:1.3rem; font-weight:bold;">◎妖精簡介◎</span><br>
       <span class="data-block">基礎生命上限：3000<BR>
@@ -1375,13 +1385,13 @@ const DATA = [
       <span style="color:#28a745; font-weight:bold;">【神聖祝福】</span><br>
       恢復類法術效果增加、魂體回魔增加，每加1點補血效果增加5%、回魔量+3滴。<br>
       <span style="color:#28a745; font-weight:bold;">【精通能量】</span><br>
-      鋼鐵防護狀態下機率減免50%傷害。<br>
+      鋼鐵防護狀態下機率傷害降為0。<br>
       烈焰之魂狀態下機率爆擊近戰普攻3倍傷害。<br>
       生命的祝福施放機率給予3倍治癒量。<br>
       暴風神射狀態下機率爆擊遠距普攻1.5倍傷害。<br>
       每加1點發動率+1.5%。<br>
       <span style="color:#28a745; font-weight:bold;">【傷害穿透】</span><br>
-      機率造成無視物理防禦(穿透聖界)，每加1點發動率加2%。<br></span>
+      機率造成無視物理防禦(穿透聖界)，近戰每加1點發動率加2.5%，遠距每加1點發動率加2%。<br></span>
       ------------------------------------------<BR>
       <BR><span style="color:red; font-size:1.3rem; font-weight:bold;">◎法師簡介◎</span><br>
       <span class="data-block">基礎生命上限：2900<BR>
@@ -1405,9 +1415,9 @@ const DATA = [
       <span style="color:#CC0088">※每轉生一次，雙刀爆擊率額外+1%</span><br>
       <br><span style="color:red; font-size:1.2rem; font-weight:bold;">◎黑妖天賦◎</span><br>
       <span style="color:#28a745; font-weight:bold;">【背刺襲擊】</span><br>
-      在目標敵人後三個面向攻擊，會造成加成傷害，每加1點增加10%傷害。<br>
+      在目標敵人後三個面向攻擊，會造成加成傷害，每加1點增加15%傷害。<br>
       <span style="color:#28a745; font-weight:bold;">【劇毒強化】</span><br>
-      強化附加劇毒，每加1點每秒中毒傷害增加25滴。<br>
+      強化附加劇毒，每加1點每秒中毒傷害增加25滴+自身力量。<br>
       <span style="color:#28a745; font-weight:bold;">【神之跳躍】</span><br>
       有機率閃避所有物理傷害，每加1點閃避機率增加1.5%。<br>
       <span style="color:#28a745; font-weight:bold;">【刀劍之影】</span><br>
@@ -1425,7 +1435,7 @@ const DATA = [
       <span style="color:#28a745; font-weight:bold;">【乾坤挪移】</span><br>
       將目前傷害100%轉為自身吸血，每加1點發動機率增加2%。<br>
       <span style="color:#28a745; font-weight:bold;">【強之護鎧】</span><br>
-      強化自身減傷，每加1點受到的所有傷害減免1.5%。<br>
+      強化自身減傷，每加1點受到的所有傷害減免2%。<br>
       <span style="color:#28a745; font-weight:bold;">【嗜殺血脈】</span><br>
       每加1點普攻提高2%傷害，目標血量越低傷害越高，50%血量達上限技能點x4%傷害<br>
       計算公式=最大血量/當前血量×技能點x2%<BR></span>
@@ -1439,10 +1449,10 @@ const DATA = [
       <span style="color:#28a745; font-weight:bold;">【毀壞之身】</span><br>
       增加骷髏毀壞命中率，每加1點機率增加2%。<br>
       <span style="color:#28a745; font-weight:bold;">【痛苦化身】</span><br>
-      自身血量越少減免傷害越高，每加1點機率+3%。<br>
+      自身血量越少減免傷害越高，每加1點機率+5%。<br>
       (減免算法:最大血量/目前血量*100，最多減免1000)<br>
       <span style="color:#28a745; font-weight:bold;">【衝擊封印】</span><br>
-      攻擊有機率讓對方無法攻擊2秒，每加1點機率增加1%。</span>`,
+      攻擊有機率讓對方無法攻擊2秒，每加1點機率增加1.5%。</span>`,
 
       // 4: 地圖介紹
       `<br><span class="h2-red">BOSS召喚塔</span><br>
