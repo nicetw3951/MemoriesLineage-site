@@ -481,7 +481,7 @@ const DATA = [
 	  <span class="h2-green"></span>
       <span class="h2-red">《 常駐活動 》點擊查看</span><br>
       <button class="download-btn" onclick="openCastleWar()">※周六八點奇岩攻城戰※</button>
-      <button class="download-btn" onclick="open9clockevent()">※每日九點大逃殺※</button>
+      <button class="download-btn" onclick="openSurvivalEvent()">※每日九點大逃殺※</button>
       <button class="download-btn" onclick="openAcademyBattle()">※每日九點二十分學院戰場※</button>
       <button class="download-btn" onclick="open9clock40event()">※每日九點四十分寶藏地宮※</button>
       <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
@@ -2031,24 +2031,174 @@ const DATA = [
       `);
     }
 
-    function open9clockevent() {
-      let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
-      popup.document.write(`
-        <html>
-          <head><title>九點大逃殺</title></head>
-          <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
-            <h2 style="color:red; text-align:center;">※※九點大逃殺活動※※</h2>
-            <p>1. 每晚九點會廣播由傳送師或報名處NPC傳送進場。</p>
-            <p>2. 第一階段秘境奪寶，5分鐘時間擊殺秘境怪物獲取道具，每100隻小怪死亡會呼喚BOSS蒞臨。</p>
-            <p>3. 第二階段分兩個模式，分隊廝殺或是BOSS生存戰。</p>
-            <p>4. 分隊廝殺會分為紅藍兩隊進行對戰，擊殺敵對可獲取團隊積分，殺光對方或廝殺到最後一刻，結算人數獲取獎勵</p>
-            <p>5. BOSS生存戰為團體生存，存活人數達標發放全體獎勵，成功擊殺第一隻BOSS且存活人數達標，全體額外獲取獎勵</p>
-            <p>6. 活動結束後發放生存積分券，可至生存商店購買商品。</p>
-            <div style="text-align:center; margin-top:20px;"><button onclick="window.close()" style="padding:6px 15px;">關閉視窗</button></div>
-          </body>
-        </html>
-      `);
-    }
+	function openSurvivalEvent() {
+	  let popup = window.open("", "SurvivalEvent", "width=700,height=750,scrollbars=yes,resizable=yes");
+	  popup.document.write(`
+		<!DOCTYPE html>
+		<html>
+		  <head>
+			<meta charset="UTF-8">
+			<title>九點大逃殺活動說明</title>
+			<style>
+			  * { box-sizing: border-box; margin: 0; padding: 0; }
+			  body {
+				font-family: "Microsoft JhengHei", Arial, sans-serif;
+				background-color: #f7f9fa;
+				color: #333333;
+				padding: 20px;
+				line-height: 1.6;
+			  }
+			  .card {
+				background: #ffffff;
+				border: 1px solid #e1e4e8;
+				border-radius: 10px;
+				padding: 22px 26px;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+			  }
+			  h2 {
+				text-align: center;
+				color: #c92a2a;
+				font-size: 22px;
+				margin-bottom: 18px;
+				border-bottom: 2px solid #ff6b6b;
+				padding-bottom: 10px;
+				letter-spacing: 1px;
+			  }
+			  .section {
+				background: #f8f9fa;
+				border: 1px solid #e9ecef;
+				border-radius: 8px;
+				padding: 14px 16px;
+				margin-bottom: 14px;
+				border-left: 5px solid #1971c2;
+			  }
+			  .section.pvp { border-left-color: #e03131; }
+			  .section.boss { border-left-color: #f08c00; }
+			  .section.notice { border-left-color: #0ca678; }
+			  .sec-title {
+				font-size: 15px;
+				font-weight: bold;
+				color: #212529;
+				margin-bottom: 8px;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			  }
+			  .tag {
+				font-size: 12px;
+				padding: 2px 8px;
+				border-radius: 4px;
+				font-weight: 500;
+			  }
+			  .tag-blue { background: #e7f5ff; color: #1971c2; border: 1px solid #a5d8ff; }
+			  .tag-red { background: #fff5f5; color: #e03131; border: 1px solid #ffc9c9; }
+			  .tag-gold { background: #fff9db; color: #e67700; border: 1px solid #ffec99; }
+			  ul { padding-left: 20px; margin-top: 4px; }
+			  li { font-size: 13.5px; margin-bottom: 5px; color: #495057; }
+			  li strong { color: #d9480f; }
+			  .sub-list { margin-top: 4px; padding-left: 18px; list-style-type: circle; }
+			  .warn-box {
+				background: #fff5f5;
+				border: 1px dashed #ffa8a8;
+				border-radius: 6px;
+				padding: 10px 14px;
+				margin-top: 10px;
+				font-size: 13px;
+				color: #c92a2a;
+				line-height: 1.6;
+			  }
+			  .btn-container { text-align: center; margin-top: 20px; }
+			  .btn-close {
+				background: #495057;
+				color: #ffffff;
+				border: none;
+				padding: 8px 30px;
+				border-radius: 6px;
+				font-size: 14px;
+				font-weight: bold;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			  }
+			  .btn-close:hover {
+				background: #212529;
+			  }
+			</style>
+		  </head>
+		  <body>
+			<div class="card">
+			  <h2>※※ 九點大逃殺活動指南 ※※</h2>
+
+			  <!-- 階段一 -->
+			  <div class="section">
+				<div class="sec-title">
+				  <span>【第一階段】秘境狩獵與打寶區</span>
+				  <span class="tag tag-blue">開戰前 5 分鐘準備</span>
+				</div>
+				<ul>
+				  <li>每晚活動開啟時，全服廣播後可透過<strong>傳送師</strong>或<strong>活動 NPC</strong> 傳送進場。</li>
+				  <li><strong>隱藏寶藏 BOSS</strong>：打寶區內全體擊殺<strong>每滿 100 隻怪物</strong>，立即召喚隱藏寶藏王降臨，擊倒可掉落豐富稀有道具！</li>
+				  <li>準備時間倒數結束後，全員將自動傳送至第二階段大逃殺戰場。</li>
+				</ul>
+			  </div>
+
+			  <!-- 階段二：分隊廝殺 -->
+			  <div class="section pvp">
+				<div class="sec-title">
+				  <span>【第二階段模式 A】紅藍分隊廝殺戰</span>
+				  <span class="tag tag-red">陣營血戰</span>
+				</div>
+				<ul>
+				  <li><strong>隨機陣營</strong>：全員隨機分配為【紅隊】與【藍隊】，敵對顯示紫名，同隊可見血條。</li>
+				  <li><strong>神之詛咒（天罰平衡）</strong>：每分鐘統計雙方人數，<strong>人數較多佔優勢的一方</strong>全員將受到神之詛咒（隨機賦予負面狀態並強制隨機瞬移）！</li>
+				  <li><strong>連殺與榮譽</strong>：戰場即時公告擊殺王頭銜與擊殺人數（同隊及同 IP 互刷不計分）。</li>
+				  <li><strong>勝負結算機制</strong>：
+					<ul class="sub-list">
+					  <li><strong>勝方</strong>：獲得勝場大獎 + 團隊擊殺積分（最高上限 30 分）。</li>
+					  <li><strong>敗方</strong>：獲得保底 3 分 + <strong>團隊擊殺分 2 倍加碼</strong>（最高上限 30 分）。</li>
+					  <li><strong>激烈平局</strong>：雙方同歸於盡或戰況激烈平手，全員發放「英勇奮戰大獎（大獎之一半）」。</li>
+					</ul>
+				  </li>
+				</ul>
+			  </div>
+
+			  <!-- 階段二：BOSS 生存 -->
+			  <div class="section boss">
+				<div class="sec-title">
+				  <span>【第二階段模式 B】終極 BOSS 生存戰</span>
+				  <span class="tag tag-gold">極限生存</span>
+				</div>
+				<ul>
+				  <li><strong>終極王者降臨</strong>：戰場內刷新滅世生存 BOSS，傷害極高，考驗全員走位與生存能力！</li>
+				  <li><strong>仇恨疲乏</strong>：BOSS 追擊同一名目標<strong>超過 10 秒</strong>會失去耐心，強制重置仇恨尋找新獵物。</li>
+				  <li><strong>空間扭曲突襲（每30秒）</strong>：每半分鐘 BOSS 怒吼扭曲空間，全員隨機施加負面詛咒並強制瞬移。</li>
+				  <li><strong>絕望增援挑戰</strong>：開戰 5 分鐘後，若存活人數 ≥ 30 人且存活率高於 50%，將額外召喚第二隻甚至第三隻復仇 BOSS 增援！</li>
+				  <li><strong>生存結算</strong>：時間結束時<strong>只要有人存活全體即獲勝</strong>，全員發放大獎；若撐過增援 BOSS 考驗，每存活 1 人全體額外多得 +1 積分（最高加碼 30 分）。全滅則發放 10 積分安慰獎。</li>
+				</ul>
+			  </div>
+
+			  <!-- 注意事項 -->
+			  <div class="section notice">
+				<div class="sec-title">
+				  <span>【重要規則】生存積分與防逃機制</span>
+				</div>
+				<ul>
+				  <li>活動獲取之<strong>生存積分券</strong>可至村莊「生存積分商店」購買專屬商品。</li>
+				</ul>
+				<div class="warn-box">
+				  ⚠️ <strong>防逃跑懲處</strong>：必須<strong>戰鬥至最後結算</strong>或<strong>在場內合法戰死</strong>方可領取正常獎勵。<br>
+				  若非戰死狀態提前回村、離場或順移脫離，視為逃兵，<strong>取消大獎與擊殺加乘，僅能獲得 3 點保底積分！</strong>
+				</div>
+			  </div>
+
+			  <div class="btn-container">
+				<button class="btn-close" onclick="window.close()">關閉視窗</button>
+			  </div>
+			</div>
+		  </body>
+		</html>
+	  `);
+	  popup.document.close();
+	}
 
     function open9clock40event() {
       let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
