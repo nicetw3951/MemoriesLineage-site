@@ -479,7 +479,8 @@ const DATA = [
       // 0: 更新內容
       `
 	  <span class="h2-green"></span>
-      <span class="h2-red">《 常駐活動 》點擊查看</span><br>
+      <span class="h2-red">《 公告 》點擊查看</span><br>
+	  <button class="download-btn" onclick="openBossSkillDesc()">※BOSS多重施法說明※</button>
       <button class="download-btn" onclick="openCastleWar()">※周六八點奇岩攻城戰※</button>
       <button class="download-btn" onclick="openSurvivalEvent()">※每日九點大逃殺※</button>
       <button class="download-btn" onclick="openAcademyBattle()">※每日九點二十分學院戰場※</button>
@@ -487,7 +488,10 @@ const DATA = [
       <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
       <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
       <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
-      
+
+	  <span class="h2-blue">★★ 2026/10/10 更新內容 ★★</span><br>
+      <span class="data-block">無限大戰的最終BOSS部分過強調降，降低攻擊與施法頻率，調整多重施法模式並於公告新增多重施法說明，方便玩家討伐<BR>
+	  </span><BR>
 	  <span class="h2-blue">★★ 2026/10/08 更新內容 ★★</span><br>
       <span class="data-block">學院戰場新增偵測防洗分機制，嚴重情況會有懲罰，勿取巧謀取自身利益<BR>
 	  學院戰場調整擊殺積分小於50分玩家，不給予學院硬幣獎勵<BR>
@@ -495,7 +499,6 @@ const DATA = [
 	  學院警衛調整為2位，並增強傷害，強化重生區的保護<BR>
 	  學院召喚的BOSS-暗黑刀神Jr，限制不能離開出生點太遠<BR>
 	  </span><BR>
-
 	  <span class="h2-blue">★★ 2026/10/07 更新內容 ★★</span><br>
       <span class="data-block">中秋節活動道具回收，感謝各位參與<BR>
 	  學院戰場測試調整，戰場玩家受到傷害不會有受傷動作，減少假性加速問題<BR>
@@ -2031,6 +2034,40 @@ const DATA = [
       `);
     }
 
+    function openBossSkillDesc() {
+      let popup = window.open("", "BossSkillDesc", "width=650,height=620,scrollbars=yes");
+      popup.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>BOSS多重施法說明</title>
+          </head>
+          <body style="font-family: Arial, 'Microsoft JhengHei', sans-serif; background-color: #ffffff; color: #333333; padding: 20px; line-height: 1.7;">
+            <h2 style="color: #d9534f; text-align: center; margin-bottom: 20px;">※※ 【BOSS多重施法說明】 ※※</h2>
+            
+            <p><b>1. 【蓄力與引爆特性】</b><br>
+            首領施法時會進入蓄力無敵狀態，同時出現特效與文字，蓄力完成後鎖定範圍內所有目標腳下引爆。每個目標皆會向外擴散 <b>5×5 格（半徑 2 格）</b> 範圍魔法傷害，站位相近時會互相波及。</p>
+            
+            <p><b>2. 【團隊抱團保護（上限約 3 倍）】</b><br>
+            身旁 2 格內有隊友且<span style="color: #0275d8; font-weight: bold;">保持正常站位（未與首領重疊）</span>時，視為抱團分攤狀態。不論被身旁隊友波及多少次，每人自身承受的<b>總傷害上限強制封頂約 3 倍左右</b>，可大幅降低減員風險。</p>
+            
+            <p><b>3. 【孤身風箏懲罰（最高約 5 倍）】</b><br>
+            若身旁沒有任何隊友，視為孤軍作戰。離首領越遠傷害倍增越嚴重，最高可承受高達 <span style="color: #d9534f; font-weight: bold;">5 倍左右</span> 的毀滅性重擊，切勿嘗試單人遠程拉打！</p>
+            
+            <p><b>4. 【重疊BOSS連帶懲罰（謹慎評估）】</b><br>
+            若有玩家<span style="color: #c9302c; font-weight: bold;">與首領座標完全重疊（0 格）</span>，將<b>解除保護上限(每一位傷害上升10~20%)</b>！<br>
+            ⚠️ <b>連帶危害</b>：重疊者腳下的爆炸<b>不會被限制</b>，同時波及身旁所有隊友！重疊踩點的人數越多，加總傷害會越高，請斟酌是否重疊BOSS！</p>
+            
+            <p><b>5. 【戰術結論】</b><br>
+            蓄力時自身防禦手段上好上滿，全體近戰應於首領身旁1~2格，越近越好<b>集中抱團</b>輸出；遠程可進圈抱團或遠離傷害範圍</p>
+            
+            <div style="text-align: center; margin-top: 25px;">
+              <button onclick="window.close()" style="padding: 7px 20px; font-size: 14px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background-color: #f8f9fa;">關閉視窗</button>
+            </div>
+          </body>
+        </html>
+      `);
+    }	
 	function openSurvivalEvent() {
 	  let popup = window.open("", "SurvivalEvent", "width=700,height=750,scrollbars=yes,resizable=yes");
 	  popup.document.write(`
