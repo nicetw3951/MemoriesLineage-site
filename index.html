@@ -480,6 +480,7 @@ const DATA = [
       `
 	  <span class="h2-green"></span>
       <span class="h2-red">《 公告 》點擊查看</span><br>
+	  <button class="download-btn" onclick="openBountySheriffDesc()">※江湖懸賞活動※</button>
 	  <button class="download-btn" onclick="openBossSkillDesc()">※BOSS多重施法說明※</button>
       <button class="download-btn" onclick="openCastleWar()">※周六八點奇岩攻城戰※</button>
       <button class="download-btn" onclick="openSurvivalEvent()">※每日九點大逃殺※</button>
@@ -488,7 +489,13 @@ const DATA = [
       <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
       <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
       <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
-
+	  
+	  <span class="h2-blue">★★ 2026/10/23 更新內容 ★★</span><br>
+      <span class="data-block">殺人搶錢正式更名江湖懸賞活動，並新增掛機死亡可設定自動復活，詳情可至上方公告查看<BR>
+	  掛機死亡仍有死亡懲罰，謹慎選擇是否設定自動復活<BR>
+	  修復部分技能卡機率不符預期問題<BR>
+	  調整變形魔杖隨機變身的造型，不再有會脫掉裝備<BR>
+	  </span><BR>
 	  <span class="h2-blue">★★ 2026/10/19 更新內容 ★★</span><br>
       <span class="data-block">調整偵測網路延遲與防外掛機制<BR>
 	  修復祝福武防卷點+0~+2裝備，會機率跳+1~+3，點+3~+4裝備，會機率跳+1~+2<BR>
@@ -1742,7 +1749,7 @@ const DATA = [
       <span class="h2-blue">※天階※</span><br>
       <span class="data-block">武器:傷害+5、命中+5、魔攻+4、力敏智+4、魅力+3、生命魔力+250<br>防具:力敏智+2、魅力+1、抗魔+3、減免+5、生命魔力+125、回血魔+4、藥水量+3%</span><br>
       <br><span class="h2-red">技能卡介紹(裝備遠距武器觸發機率減半)</span><br>
-      <span class="data-block">獲取低階技能卡箱:無限大戰、藏寶地宮、武防擴孔區<br>
+      <span class="data-block">獲取低階技能卡箱(技能卡無CD):無限大戰、藏寶地宮、武防擴孔區<br>
       狩獵獲取技能卡箱，主城NPC可升階與重製技能卡箱<BR>武器插孔攻擊+1%觸發技能(相同卡片僅能插一張)<br>
       防具插孔被攻擊+1%觸發技能(相同部位相同卡片僅能插一張)</span><br>
       <span class="h2-blue">※低階技能卡※</span><br>
@@ -2085,7 +2092,52 @@ const DATA = [
           </body>
         </html>
       `);
-    }	
+    }
+	function openBountySheriffDesc() {
+	  let popup = window.open("", "BountySheriffDesc", "width=680,height=680,scrollbars=yes");
+	  popup.document.write(`
+		<!DOCTYPE html>
+		<html>
+		  <head>
+			<meta charset="utf-8">
+			<title>【江湖通緝令】懸賞捕快與殺人奪寶活動說明</title>
+		  </head>
+		  <body style="font-family: Arial, 'Microsoft JhengHei', sans-serif; background-color: #ffffff; color: #333333; padding: 25px; line-height: 1.7; font-size: 14px;">
+			<h2 style="color: #c9302c; text-align: center; margin-bottom: 20px; letter-spacing: 1px;">⚔️【江湖通緝令】懸賞捕快與殺人奪寶活動說明 ⚔️</h2>
+			
+			<p><b>1. 【擊殺奪寶與惡名通緝】</b><br>
+			凡達到指定等級以上之戰鬥，擊殺對手時將發動<b>奪寶機制</b>掠奪對方身上200萬~10%的<span style="color: #c9302c; font-weight: bold;">金幣</span>。<br>
+			掠奪之金幣採取分流機制：<span style="color: #0275d8; font-weight: bold;">50% 直接納入殺手背包</span>，其餘 <span style="color: #c9302c; font-weight: bold;">50% 自動存入自身懸賞池</span>，同時進行全服江湖公告，<span style="color: #c9302c; font-weight: bold;">只要在一般區域殺人，不管殺好人還壞人</span>，都會變成有懸賞的「通緝犯」！</p>
+			
+			<p><b>2. 【正義捕快・緝凶賞金規則】</b><br>
+			任何人只要討伐帶有懸賞金的通緝犯，即可化身捕快領取賞金：<br>
+			• <b>懸賞金 ≤ 500 萬</b>：擊殺後<b>全額領走</b>！<br>
+			• <b>懸賞金 &gt; 500 萬</b>：每次擊殺領取其<b>總懸賞金之 50%</b>（保底最少領取 500 萬）！<br>
+			💰 <b>貼心防溢位機制</b>：扣除衙門5%稅金後實領發放。實領金額達 <b>1 億以上自動兌換為【金條(一億)】</b>，尾數發放金幣，無負重爆倉煩惱。</p>
+			
+			<p><b>3. 【每週三結算・躲過一週領取賞金】</b><br>
+			每逢<b>週三例行維護</b>進行全服懸賞大結算。<br>
+			通緝犯若憑藉過人實力生存、未被捕快領走身上賞金，剩餘懸賞金，將全額轉入待領取池！可至村莊【江湖公佈欄】點選「<b>【懸賞結算】領取剩餘懸賞金</b>」將所有未被領走之賣命錢領回背包！各項生涯擊殺與死亡戰績永久保存。</p>
+			
+			<p><b>4. 【掛機受害保護】</b><br>
+			為保障安心掛機環境，玩家於內掛狀態遭其他玩家或其寵物/召喚物擊殺後，會自動復活並獲取以下保護：<br>
+			• <b>基礎保護</b>：自動獲得 <span style="color: #2e6da4; font-weight: bold;">2 小時掛機防護罩</span>。<br>
+			• <b>雙倍延長</b>：若背包攜帶<b>專用保護延長道具</b>，將自動消耗 1 個並<b>延長為 4 小時</b>雙倍保護！<br>
+			⚠️ <b>保護效果</b>：處於保護狀態且開啟內掛時，<b>完全免疫所有玩家之普通物理攻擊與魔法技能傷害</b>離線後失效。</p>
+			
+			<p><b>5. 【懸賞公佈欄・三大風雲榜】</b><br>
+			各大村莊公佈欄提供即時戰況查閱：<br>
+			• <span style="color: #c9302c; font-weight: bold;">【通緝榜】</span>：展示全服殺人數最多、懸賞金最高之十大通緝惡徒。<br>
+			• <span style="color: #0275d8; font-weight: bold;">【捕快榜】</span>：展示擊殺通緝犯次數最多、領取總賞金最高之十大神捕。<br>
+			• <span style="color: #8a6d3b; font-weight: bold;">【受害榜】</span>：記錄受搶奪次數與被奪金幣最多之名冊，知恥而後勇！</p>
+			
+			<div style="text-align: center; margin-top: 30px;">
+			  <button onclick="window.close()" style="padding: 8px 24px; font-size: 14px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background-color: #f8f9fa; font-weight: bold;">關閉視窗</button>
+			</div>
+		  </body>
+		</html>
+	  `);
+	}	
 	function openSurvivalEvent() {
 	  let popup = window.open("", "SurvivalEvent", "width=700,height=750,scrollbars=yes,resizable=yes");
 	  popup.document.write(`
