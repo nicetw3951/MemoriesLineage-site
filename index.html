@@ -2529,161 +2529,299 @@
     }
 
 function openAcademyBattle() {
-      let popup = window.open("", "Disclaimer", "width=960,height=820,scrollbars=yes");
-      popup.document.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8">
-            <title>『學院戰場』活動完整介紹指南</title>
-            <style>
-              body { font-family: "Microsoft JhengHei", Arial, sans-serif; padding: 25px; line-height: 1.8; color: #222; background-color: #fbfbfb; }
-              h2 { color: #b30000; text-align: center; border-bottom: 2px solid #b30000; padding-bottom: 10px; margin-bottom: 20px; }
-              h3 { color: #0b4f8a; margin-top: 22px; margin-bottom: 8px; border-left: 5px solid #0b4f8a; padding-left: 10px; font-size: 17px; }
-              p, li { font-size: 14.5px; margin: 6px 0; }
-              ul { padding-left: 22px; margin: 6px 0; }
-              .highlight { color: #b30000; font-weight: bold; }
-              .faction-pojun { color: #b30000; font-weight: bold; }
-              .faction-yushou { color: #0b4f8a; font-weight: bold; }
-              .tag-title { display: inline-block; background: #eef4fa; border: 1px solid #b8d4ee; color: #0b4f8a; border-radius: 4px; padding: 1px 6px; font-size: 13.5px; margin: 2px 4px 2px 0; font-weight: bold; }
-              .objective-box { background-color: #f7f9fa; border: 1px solid #dbe2e8; border-radius: 6px; padding: 12px 16px; margin: 10px 0; }
-              .warning-box { background-color: #fff2f2; border: 1.5px solid #d9534f; border-radius: 6px; padding: 12px 16px; margin-top: 18px; }
-              .btn-close { padding: 8px 26px; font-size: 15px; cursor: pointer; border-radius: 4px; background: #333; color: #fff; border: none; }
-              .btn-close:hover { background: #555; }
-            </style>
-          </head>
-          <body>
-            <h2>⚔️『學院戰場 2.0』活動完整指南 ⚔️</h2>
+  // 判斷裝置寬度，若為手機螢幕則以全螢幕或最大比例開啟
+  const isMobile = window.innerWidth <= 768;
+  const popupWidth = isMobile ? window.innerWidth : Math.min(960, window.innerWidth);
+  const popupHeight = isMobile ? window.innerHeight : Math.min(820, window.innerHeight);
+  
+  let popup = window.open(
+    "",
+    "Disclaimer",
+    `width=${popupWidth},height=${popupHeight},scrollbars=yes,resizable=yes`
+  );
 
-            <h3>【一、 學院陣營與模式投票】</h3>
+  if (!popup) {
+    alert("彈跳視窗已被瀏覽器封鎖，請允許開啟彈跳視窗後再試。");
+    return;
+  }
+
+  popup.document.write(`
+    <!DOCTYPE html>
+    <html lang="zh-TW">
+      <head>
+        <meta charset="utf-8">
+        <!-- 關鍵：加入 Viewport 標籤以適配行動裝置 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>『學院戰場』活動完整介紹指南</title>
+        <style>
+          * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 24px 18px;
+            line-height: 1.7;
+            color: #222;
+            background-color: #fbfbfb;
+            margin: 0;
+            word-break: break-word;
+          }
+          h2 {
+            color: #b30000;
+            text-align: center;
+            border-bottom: 2px solid #b30000;
+            padding-bottom: 12px;
+            margin: 0 0 20px 0;
+            font-size: 22px;
+          }
+          h3 {
+            color: #0b4f8a;
+            margin-top: 24px;
+            margin-bottom: 10px;
+            border-left: 5px solid #0b4f8a;
+            padding-left: 10px;
+            font-size: 16.5px;
+          }
+          p, li {
+            font-size: 14.5px;
+            margin: 6px 0;
+          }
+          ul {
+            padding-left: 20px;
+            margin: 6px 0;
+          }
+          ul ul {
+            padding-left: 18px;
+          }
+          .highlight {
+            color: #b30000;
+            font-weight: bold;
+          }
+          .faction-pojun {
+            color: #b30000;
+            font-weight: bold;
+          }
+          .faction-yushou {
+            color: #0b4f8a;
+            font-weight: bold;
+          }
+          .tag-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 6px;
+            margin-top: 8px;
+          }
+          .tag-title {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef4fa;
+            border: 1px solid #b8d4ee;
+            color: #0b4f8a;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+          }
+          .objective-box {
+            background-color: #f7f9fa;
+            border: 1px solid #dbe2e8;
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin: 12px 0;
+          }
+          .warning-box {
+            background-color: #fff2f2;
+            border: 1.5px solid #d9534f;
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin-top: 20px;
+          }
+          .btn-container {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 15px;
+          }
+          .btn-close {
+            display: inline-block;
+            width: 100%;
+            max-width: 240px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            background: #333;
+            color: #fff;
+            border: none;
+            transition: background 0.2s;
+          }
+          .btn-close:active, .btn-close:hover {
+            background: #555;
+          }
+
+          /* 手機版微調 */
+          @media (max-width: 600px) {
+            body {
+              padding: 16px 14px;
+              line-height: 1.65;
+            }
+            h2 {
+              font-size: 19px;
+            }
+            h3 {
+              font-size: 15.5px;
+            }
+            p, li {
+              font-size: 14px;
+            }
+            ul {
+              padding-left: 16px;
+            }
+            .objective-box, .warning-box {
+              padding: 12px;
+            }
+            .tag-container {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <h2>⚔️『學院戰場 2.0』活動完整指南 ⚔️</h2>
+
+        <h3>【一、 學院陣營與模式投票】</h3>
+        <ul>
+          <li><b>學院選擇</b>：請至主城尋找「學院管理員」選擇加入 <span class="faction-pojun">破軍學院</span> 或 <span class="faction-yushou">禦守學院</span>。可免費退學（學院積分歸零），亦可透過元寶商人購買「轉學證明」保留積分轉學。</li>
+          <li><b>活動進程</b>：每日活動開放前 5 分鐘進行全服廣播並開啟「戰場模式投票」，活動正式開啟後戰鬥時間為 20 分鐘，時間截止時地圖內所有玩家將自動傳送回主城並進行最終結算。</li>
+          <li><b>分隊模式投票</b>：玩家可於管理員處投下期望的模式（1: 原學院分隊、2: 個人全隨機分隊、3: 組隊隨機分隊）。開門時系統將由<b>前兩高票依比例抽籤決定</b>，避免單一陣營惡意灌票（抽中個人隨機模式時，進場將自動退出隊伍各自為戰）。</li>
+        </ul>
+
+        <h3>【二、 進場規則、身分匿名與貢獻度達標】</h3>
+        <ul>
+          <li><b>入場與陣營基地</b>：活動開始後由傳送師進場，地圖左側為破軍傳入與復活點，右側為禦守傳入與復活點。雙方陣營基地配置守護教官，將主動擊退入侵的敵方玩家；剛復活之玩家享有保護機制，不會立即顯示主動攻擊劍圖示。</li>
+          <li><b>外觀匿名與戰術溝通</b>：進場後所有玩家角色名稱將強制匿名，魔法娃娃統一變更為經驗公主外觀（能力完全保留），並隱藏城主王冠。戰場內全面禁止順移、召喚寵物，且<b>戰場內禁止使用大喊頻道</b>，請直接使用一般頻道與同陣營戰友溝通。</li>
+          <li><span class="highlight">【學院貢獻度達標與在線資格】（核心重點）</span>：
             <ul>
-              <li><b>學院選擇</b>：請至主城尋找「學院管理員」選擇加入 <span class="faction-pojun">破軍學院</span> 或 <span class="faction-yushou">禦守學院</span>。可免費退學（學院積分歸零），亦可透過元寶商人購買「轉學證明」保留積分轉學。</li>
-              <li><b>活動進程</b>：每日活動開放前 5 分鐘進行全服廣播並開啟「戰場模式投票」，活動正式開啟後戰鬥時間為 20 分鐘，時間截止時地圖內所有玩家將自動傳送回主城並進行最終結算。</li>
-              <li><b>分隊模式投票</b>：玩家可於管理員處投下期望的模式（1: 原學院分隊、2: 個人全隨機分隊、3: 組隊隨機分隊）。開門時系統將由<b>前兩高票依比例抽籤決定</b>，避免單一陣營惡意灌票（抽中個人隨機模式時，進場將自動退出隊伍各自為戰）。</li>
+              <li>學員在戰場中的各項行動（擊殺/助攻玩家、擊殺怪物、爭奪據點、奪劍護送、摧毀/佔領守護塔）皆會持續累積<b>「學院貢獻分」</b>。當貢獻分達標時，系統會立即發出通知提示。</li>
+              <li>活動結束結算時，<b>個人學院貢獻分達標且「保持在線」</b>的活躍學員，方享有學院總積分分紅資格並可參與「榮譽稱號王」評選（<span class="highlight">貢獻度未達標或結算時處於離線狀態者，皆無法獲得任何結算獎勵、分紅與稱號</span>）。</li>
             </ul>
+          </li>
+        </ul>
 
-            <h3>【二、 進場規則、身分匿名與貢獻度達標】</h3>
+        <h3>【三、 戰場三大核心戰略爭奪】</h3>
+        <div class="objective-box">
+          <p><b>🏰【中央守護者之塔】（戰略防守與積分泉源）</b></p>
+          <ul>
+            <li>守護塔坐落於戰場中央廣場，初始為中立狀態，可由任一陣營攻打摧毀以奪取佔領權。</li>
+            <li><b>防護機制</b>：守護之塔受到弓箭與飛刀傷害<b>減半</b>，並享有單次傷害上限防護；佔領方同陣營成員無法攻擊己方守護塔，己方守護塔可施放治癒術，單次補血量有上限僅微量補血。</li>
+            <li><b>佔領與防禦收益</b>：佔領陣營每 5 秒自動獲得 <span class="highlight">學院總積分 +7 分</span>；在守護塔周圍 8 格範圍內的玩家每 5 秒獲得 <span class="highlight">學院貢獻分 +2 分</span>（設有個人動態累積上限，積極參與擊殺與助攻可持續擴充上限）。</li>
+            <li><b>摧毀與重生</b>：推倒守護塔將進行全場廣播並計入最後一擊者個人「推塔數」，守護塔於 5 秒後將重生成為擊破陣營的所屬塔！</li>
+          </ul>
+        </div>
+
+        <div class="objective-box">
+          <p><b>⚔️【賢者之劍奪劍護送】（兵家必爭積分神器）</b></p>
+          <ul>
+            <li>戰場<b>上方平台</b>將降臨神聖神器「賢者之劍」，全場勇士皆可拾取。拾取後持劍者將散發詛咒枷鎖。</li>
+            <li><b>持劍負面挑戰</b>：持劍者身負巨力，每 5 秒將承受藥水霜化術、魔法封印（並有 60% 機率觸發骷髏破壞造成暈眩）效果，極度考驗走位與團隊護駕！</li>
+            <li><b>持劍與護送收益</b>：持劍者每 5 秒獲得 <span class="highlight">貢獻分 +5、學院總積分 +5</span>；在持劍者畫面範圍內的同陣營護送戰友，每 5 秒亦可獲得 <span class="highlight">貢獻分 +3</span>（護送貢獻同樣設有個人動態累積上限，參與擊殺與助攻可持續擴充上限）！</li>
+            <li><b>成功護送基地</b>：將賢者之劍一路護送回己方陣營基地（復活點周邊 4 格內），賢者之劍將化為強大能量回收，所屬學院立即獲得 <span class="highlight">學院總積分 +250 分</span>，持劍者獲得 <span class="highlight">貢獻分 +50 與奪劍次數 +1</span>！賢者之劍將於 1 分鐘後再次於上方平台重現。</li>
+            <li><b>斬殺與重置</b>：持劍者陣亡或離線時劍會掉落於地面，斬殺持劍者可獲得 <span class="highlight">貢獻分 +20 與學院總積分 +20</span>；掉落於地面超過 30 秒未被拾取，將自動回歸上方平台。</li>
+          </ul>
+        </div>
+
+        <div class="objective-box">
+          <p><b>🚩【據點首領突襲】（強效Buff逆轉戰局）</b></p>
+          <ul>
+            <li>位於戰場下方據點，由據點首領與其隨從部隊駐守，首領死亡後每隔 2 分鐘重新降臨。</li>
+            <li>最後一擊擊殺首領者獲得 <span class="highlight">貢獻分 +30、據點首領擊殺數 +1</span>，參與攻擊之同陣營助攻隊友獲得 <span class="highlight">貢獻分 +3</span>；所屬學院獲得 <span class="highlight">學院總積分 +150（若最後一擊者處於神聖光環下高達 +300 分）</span>！</li>
+            <li>成功擊殺據點首領之陣營全體成員，立即享有<b>【全體弱勢 BUFF 提升一階（持續 2 分鐘）】</b>的強大戰力加成！</li>
+          </ul>
+        </div>
+
+        <h3>【四、 學院神聖 BUFF、弱勢逆轉與傷害上限】</h3>
+        <ul>
+          <li><b>戰場傷害保護</b>：戰場全圖受神聖結界保護，單次攻擊傷害設有上限防護。</li>
+          <li><b>神聖 BUFF 啟動</b>：戰場內 10 格範圍內集結 3 名同陣營戰友（或持有專屬學院道具增益），每 5 秒自動觸發 10 秒神聖光環（同陣營可互相施放聖結界、生命的祝福、體力回復術）：
             <ul>
-              <li><b>入場與陣營基地</b>：活動開始後由傳送師進場，地圖左側為破軍傳入與復活點，右側為禦守傳入與復活點。雙方陣營基地配置守護教官，將主動擊退入侵的敵方玩家；剛復活之玩家享有保護機制，不會立即顯示主動攻擊劍圖示。</li>
-              <li><b>外觀匿名與戰術溝通</b>：進場後所有玩家角色名稱將強制匿名，魔法娃娃統一變更為經驗公主外觀（能力完全保留），並隱藏城主王冠。戰場內全面禁止順移、召喚寵物，且<b>戰場內禁止使用大喊頻道</b>，請直接使用一般頻道與同陣營戰友溝通。</li>
-              <li><span class="highlight">【學院貢獻度達標與在線資格】（核心重點）</span>：
-                <ul>
-                  <li>學員在戰場中的各項行動（擊殺/助攻玩家、擊殺怪物、爭奪據點、奪劍護送、摧毀/佔領守護塔）皆會持續累積<b>「學院貢獻分」</b>。當貢獻分達標時，系統會立即發出通知提示。</li>
-                  <li>活動結束結算時，<b>個人學院貢獻分達標且「保持在線」</b>的活躍學員，方享有學院總積分分紅資格並可參與「榮譽稱號王」評選（<span class="highlight">貢獻度未達標或結算時處於離線狀態者，皆無法獲得任何結算獎勵、分紅與稱號</span>）。</li>
-                </ul>
-              </li>
+              <li><span class="faction-yushou">禦守學院神聖 BUFF</span>：承受普攻單次傷害上限不超過自身最大 HP 10%（最低不低於 1,000）；受到普攻時有 15% 機率完全免傷並 100% 反彈該傷害；普攻命中失敗時有 25% 強制修正為命中。</li>
+              <li><span class="faction-pojun">破軍學院神聖 BUFF</span>：普攻每下附加 150 點真實傷害（三重矢每箭附加 50 點真實傷害）；命中失敗有 25% 強制修正為命中；攻擊帶有禦守 BUFF 之目標時，有 15% 機率無視其防護打出原始傷害。</li>
+              <li><b>怪物增傷效果</b>：兩種神聖 BUFF 攻擊小怪皆附加其最大 HP 10% 固定傷害，攻擊小 BOSS 附加最大 HP 5% 固定傷害。</li>
             </ul>
-
-            <h3>【三、 戰場三大核心戰略爭奪】</h3>
-            <div class="objective-box">
-              <p><b>🏰【中央守護者之塔】（戰略防守與積分泉源）</b></p>
-              <ul>
-                <li>守護塔坐落於戰場中央廣場，初始為中立狀態，可由任一陣營攻打摧毀以奪取佔領權。</li>
-                <li><b>防護機制</b>：守護之塔受到弓箭與飛刀傷害<b>減半</b>，並享有單次傷害上限防護；佔領方同陣營成員無法攻擊己方守護塔，己方守護塔可施放治癒術，單次補血量有上限僅微量補血。</li>
-                <li><b>佔領與防禦收益</b>：佔領陣營每 5 秒自動獲得 <span class="highlight">學院總積分 +7 分</span>；在守護塔周圍 8 格範圍內的玩家每 5 秒獲得 <span class="highlight">學院貢獻分 +2 分</span>（設有個人動態累積上限，積極參與擊殺與助攻可持續擴充上限）。</li>
-                <li><b>摧毀與重生</b>：推倒守護塔將進行全場廣播並計入最後一擊者個人「推塔數」，守護塔於 5 秒後將重生成為擊破陣營的所屬塔！</li>
-              </ul>
-            </div>
-
-            <div class="objective-box">
-              <p><b>⚔️【賢者之劍奪劍護送】（兵家必爭積分神器）</b></p>
-              <ul>
-                <li>戰場<b>上方平台</b>將降臨神聖神器「賢者之劍」，全場勇士皆可拾取。拾取後持劍者將散發詛咒枷鎖。</li>
-                <li><b>持劍負面挑戰</b>：持劍者身負巨力，每 5 秒將承受藥水霜化術、魔法封印（並有 60% 機率觸發骷髏破壞造成暈眩）效果，極度考驗走位與團隊護駕！</li>
-                <li><b>持劍與護送收益</b>：持劍者每 5 秒獲得 <span class="highlight">貢獻分 +5、學院總積分 +5</span>；在持劍者畫面範圍內的同陣營護送戰友，每 5 秒亦可獲得 <span class="highlight">貢獻分 +3</span>（護送貢獻同樣設有個人動態累積上限，參與擊殺與助攻可持續擴充上限）！</li>
-                <li><b>成功護送基地</b>：將賢者之劍一路護送回己方陣營基地（復活點周邊 4 格內），賢者之劍將化為強大能量回收，所屬學院立即獲得 <span class="highlight">學院總積分 +250 分</span>，持劍者獲得 <span class="highlight">貢獻分 +50 與奪劍次數 +1</span>！賢者之劍將於 1 分鐘後再次於上方平台重現。</li>
-                <li><b>斬殺與重置</b>：持劍者陣亡或離線時劍會掉落於地面，斬殺持劍者可獲得 <span class="highlight">貢獻分 +20 與學院總積分 +20</span>；掉落於地面超過 30 秒未被拾取，將自動回歸上方平台。</li>
-              </ul>
-            </div>
-
-            <div class="objective-box">
-              <p><b>🚩【據點首領突襲】（強效Buff逆轉戰局）</b></p>
-              <ul>
-                <li>位於戰場下方據點，由據點首領與其隨從部隊駐守，首領死亡後每隔 2 分鐘重新降臨。</li>
-                <li>最後一擊擊殺首領者獲得 <span class="highlight">貢獻分 +30、據點首領擊殺數 +1</span>，參與攻擊之同陣營助攻隊友獲得 <span class="highlight">貢獻分 +3</span>；所屬學院獲得 <span class="highlight">學院總積分 +150（若最後一擊者處於神聖光環下高達 +300 分）</span>！</li>
-                <li>成功擊殺據點首領之陣營全體成員，立即享有<b>【全體弱勢 BUFF 提升一階（持續 2 分鐘）】</b>的強大戰力加成！</li>
-              </ul>
-            </div>
-
-            <h3>【四、 學院神聖 BUFF、弱勢逆轉與傷害上限】</h3>
+          </li>
+          <li><b>逆轉弱勢增益（無需集結自動常駐）</b>：
             <ul>
-              <li><b>戰場傷害保護</b>：戰場全圖受神聖結界保護，單次攻擊傷害設有上限防護。</li>
-              <li><b>神聖 BUFF 啟動</b>：戰場內 10 格範圍內集結 3 名同陣營戰友（或持有專屬學院道具增益），每 5 秒自動觸發 10 秒神聖光環（同陣營可互相施放聖結界、生命的祝福、體力回復術）：
-                <ul>
-                  <li><span class="faction-yushou">禦守學院神聖 BUFF</span>：承受普攻單次傷害上限不超過自身最大 HP 10%（最低不低於 1,000）；受到普攻時有 15% 機率完全免傷並 100% 反彈該傷害；普攻命中失敗時有 25% 強制修正為命中。</li>
-                  <li><span class="faction-pojun">破軍學院神聖 BUFF</span>：普攻每下附加 150 點真實傷害（三重矢每箭附加 50 點真實傷害）；命中失敗有 25% 強制修正為命中；攻擊帶有禦守 BUFF 之目標時，有 15% 機率無視其防護打出原始傷害。</li>
-                  <li><b>怪物增傷效果</b>：兩種神聖 BUFF 攻擊小怪皆附加其最大 HP 10% 固定傷害，攻擊小 BOSS 附加最大 HP 5% 固定傷害。</li>
-                </ul>
-              </li>
-              <li><b>逆轉弱勢增益（無需集結自動常駐）</b>：
-                <ul>
-                  <li>當戰局開打後，若己方陣營總積分與總擊殺數皆落後，且學院積分落後達 300 分時啟動「<b>弱勢一階</b>」（神聖效果翻倍為 2 倍，神聖光環下擊殺小怪學院積分額外 +1）。</li>
-                  <li>當積分落後達 500 分且擊殺數落後，或「弱勢一階」持續達 7 分鐘時，升級為「<b>弱勢二階</b>」（神聖效果翻倍為 3 倍，神聖光環下擊殺小怪學院積分額外 +2，且 <b>PVP 擊殺敵方玩家個人積分額外 +2</b>）。啟動後至少鎖定維持 1 分鐘以上。</li>
-                </ul>
-              </li>
+              <li>當戰局開打後，若己方陣營總積分與總擊殺數皆落後，且學院積分落後達 300 分時啟動「<b>弱勢一階</b>」（神聖效果翻倍為 2 倍，神聖光環下擊殺小怪學院積分額外 +1）。</li>
+              <li>當積分落後達 500 分且擊殺數落後，或「弱勢一階」持續達 7 分鐘時，升級為「<b>弱勢二階</b>」（神聖效果翻倍為 3 倍，神聖光環下擊殺小怪學院積分額外 +2，且 <b>PVP 擊殺敵方玩家個人積分額外 +2</b>）。啟動後至少鎖定維持 1 分鐘以上。</li>
             </ul>
+          </li>
+        </ul>
 
-            <h3>【五、 首領召喚與怪物獵殺積分】</h3>
+        <h3>【五、 首領召喚與怪物獵殺積分】</h3>
+        <ul>
+          <li><b>戰場小怪</b>：擊殺獲得個人貢獻分 +1（處於神聖 BUFF 時學院總積分額外 +2，若享有弱勢一/二階再額外 +1/+2）。全場累計擊殺小怪每達 50 隻將召喚小 BOSS「大大」前來復仇；累計達 1200 隻將於【中央廣場】召喚戰場霸主「暗黑刀神Jr」。</li>
+          <li><b>戰場首領</b>：
             <ul>
-              <li><b>戰場小怪</b>：擊殺獲得個人貢獻分 +1（處於神聖 BUFF 時學院總積分額外 +2，若享有弱勢一/二階再額外 +1/+2）。全場累計擊殺小怪每達 50 隻將召喚小 BOSS「大大」前來復仇；累計達 1200 隻將於【中央廣場】召喚戰場霸主「暗黑刀神Jr」。</li>
-              <li><b>戰場首領</b>：
-                <ul>
-                  <li>小 BOSS（大大）：每次發生 PVP 擊殺或累計殺怪時現身。擊殺個人積分 +1、貢獻分 +5、學院總積分 +5（神聖 BUFF 下為 +10）。</li>
-                  <li>大 BOSS（暗黑刀神Jr）：全場玩家死亡累計達 50 人（現身於上方平台）或殺怪達 1200 隻（現身於中央廣場）時降臨。擊殺個人積分 +50、貢獻分 +100、學院總積分 +150（神聖 BUFF 下高達 +300），參與攻擊之同陣營助攻隊友貢獻分 +30！</li>
-				  <li>怪物會掉落破軍/禦守脛甲(α、β、γ)，小怪不會掉落γ，數據可於防具介紹查看，另除小怪外皆有機率掉落道教九秘典籍與法寶，物品掉落享有 10 秒拾取優先權。</li>
-                </ul>
-              </li>
+              <li>小 BOSS（大大）：每次發生 PVP 擊殺或累計殺怪時現身。擊殺個人積分 +1、貢獻分 +5、學院總積分 +5（神聖 BUFF 下為 +10）。</li>
+              <li>大 BOSS（暗黑刀神Jr）：全場玩家死亡累計達 50 人（現身於上方平台）或殺怪達 1200 隻（現身於中央廣場）時降臨。擊殺個人積分 +50、貢獻分 +100、學院總積分 +150（神聖 BUFF 下高達 +300），參與攻擊之同陣營助攻隊友貢獻分 +30！</li>
+              <li>怪物會掉落破軍/禦守脛甲(α、β、γ)，小怪不會掉落γ，數據可於防具介紹查看，另除小怪外皆有機率掉落道教九秘典籍與法寶，物品掉落享有 10 秒拾取優先權。</li>
             </ul>
+          </li>
+        </ul>
 
-            <h3>【六、 PVP 對決、勝負掠奪分紅與九大榮譽稱號王】</h3>
+        <h3>【六、 PVP 對決、勝負掠奪分紅與九大榮譽稱號王】</h3>
+        <ul>
+          <li><b>PVP 擊殺與助攻</b>：
             <ul>
-              <li><b>PVP 擊殺與助攻</b>：
-                <ul>
-                  <li>擊殺敵對玩家：個人積分 +3（若己方處於<b>弱勢二階</b>則為 <span class="highlight">+5</span>）、貢獻分 +30、學院總積分 +10，並立刻召喚一隻小 BOSS「大大」加入戰局！</li>
-                  <li>助攻獎勵（目標陣亡前 15 秒內造成傷害）：個人積分 +1、貢獻分 +10、學院總積分 +2。</li>
-                </ul>
-              </li>
-              <li><b>陣營勝負掠奪與結算分配機制</b>：
-                <ul>
-                  <li><span class="highlight">【勝方掠奪 20% 分紅池】</span>：結算時學院總積分較高之獲勝陣營，將直接<b>掠奪敗方陣營 20% 的總積分分紅池</b>納為己有（敗方僅剩 80% 分紅池）；若雙方總積分平手，則觸發平手懲罰，雙方分紅池皆以 <b>80%</b> 計算！</li>
-                  <li><b>60% 基礎分紅池</b>：由所屬學院所有在線達標學員，依個人<b>「貢獻分比例」</b>公平瓜分。</li>
-                  <li><b>40% 擊殺分紅池</b>：由所屬學院在線達標學員，依個人<b>「有效擊殺貢獻比（擊殺數 + 0.25 × 助攻數）」</b>進行額外戰鬥分紅。</li>
-                  <li>結算所得之總積分（個人戰鬥積分 + 學院基礎分紅 + 擊殺助攻分紅）將直接轉入角色之學院位階總分。</li>
-                </ul>
-              </li>
-              <li><b>👑【各陣營九大榮譽稱號王評選】</b>：
-                <p>活動結算時，雙方陣營將依下列優先順序各自獨立評選在線達標學員（每人限得一項稱號，數值需大於 0；同分時依序比較貢獻分與個人積分），榮獲稱號者將額外獲得<b>【學院硬幣 x 5】</b>，並於戰績榜顯示專屬代表符號：</p>
-                <div>
-                  <span class="tag-title">★ 擊殺王</span>：擊殺敵對玩家次數最多<br>
-                  <span class="tag-title">▲ 助攻王</span>：參與玩家對抗助攻次數最多<br>
-                  <span class="tag-title">※ 積分王</span>：個人作戰獲得之戰鬥積分最高<br>
-                  <span class="tag-title">☆ 貢獻王</span>：戰場各項行動累積之貢獻分最高<br>
-                  <span class="tag-title">● 打野王</span>：獵殺戰場怪物總數最多<br>
-                  <span class="tag-title">■ 據點王</span>：最後一擊擊殺據點首領次數最多<br>
-                  <span class="tag-title">◆ 奪劍王</span>：成功將賢者之劍護送回基地次數最多<br>
-                  <span class="tag-title">◎ 推塔王</span>：最後一擊擊破並佔領守護者之塔次數最多<br>
-                  <span class="tag-title">▼ 奉獻王</span>：戰場英勇陣亡次數最多
-                </div>
-              </li>
+              <li>擊殺敵對玩家：個人積分 +3（若己方處於<b>弱勢二階</b>則為 <span class="highlight">+5</span>）、貢獻分 +30、學院總積分 +10，並立刻召喚一隻小 BOSS「大大」加入戰局！</li>
+              <li>助攻獎勵（目標陣亡前 15 秒內造成傷害）：個人積分 +1、貢獻分 +10、學院總積分 +2。</li>
             </ul>
-
-            <div class="warning-box">
-              <h3 style="color:#b30000; margin-top:0; border-left:none; padding-left:0;">🛡️【重要規章：戰場風紀與防弊監控機制】</h3>
-              <p>戰場全面啟用<b>多維度動態行為監控系統</b>（針對同 IP 異常互殺、短時間連續餵分、多次死亡卻毫無實質作戰與貢獻等破壞競技平衡之行為進行全時段自動分析）：</p>
-              <ul>
-                <li>系統以玩家<b>全方位戰場實質貢獻度</b>為評估依據，若判定對抗行為異常、短時間重複擊殺同一目標或缺乏實質作戰貢獻，將<b>即時自動攔截並中斷計分</b>，該次擊殺不予發放任何積分、貢獻分與戰績。</li>
-                <li>系統配備<b>階梯式警示與嚴懲機制</b>：初期異常（第 1~2 次）將予以系統警報提示；若經警告仍持續違規（第 3~4 次），系統將<b>每次直接扣除個人戰場積分 30 點上繳學院，並通報全場</b>。</li>
-                <li><b>嚴重累犯者（累計達 5 次警告）</b>：系統將<b>強制驅逐出場、列入當場次黑名單禁止再次進場（含組隊跟隨）、沒收全額戰場積分平分給雙方學院、全伺服器公告懲戒，並直接重罰扣除角色本體學院總積分 100 點</b>！請各位勇士遵守公平競技原則，切勿投機取巧。</li>
-              </ul>
+          </li>
+          <li><b>陣營勝負掠奪與結算分配機制</b>：
+            <ul>
+              <li><span class="highlight">【勝方掠奪 20% 分紅池】</span>：結算時學院總積分較高之獲勝陣營，將直接<b>掠奪敗方陣營 20% 的總積分分紅池</b>納為己有（敗方僅剩 80% 分紅池）；若雙方總積分平手，則觸發平手懲罰，雙方分紅池皆以 <b>80%</b> 計算！</li>
+              <li><b>60% 基礎分紅池</b>：由所屬學院所有在線達標學員，依個人<b>「貢獻分比例」</b>公平瓜分。</li>
+              <li><b>40% 擊殺分紅池</b>：由所屬學院在線達標學員，依個人<b>「有效擊殺貢獻比（擊殺數 + 0.25 × 助攻數）」</b>進行額外戰鬥分紅。</li>
+              <li>結算所得之總積分（個人戰鬥積分 + 學院基礎分紅 + 擊殺助攻分紅）將直接轉入角色之學院位階總分。</li>
+            </ul>
+          </li>
+          <li><b>👑【各陣營九大榮譽稱號王評選】</b>：
+            <p>活動結算時，雙方陣營將依下列優先順序各自獨立評選在線達標學員（每人限得一項稱號，數值需大於 0；同分時依序比較貢獻分與個人積分），榮獲稱號者將額外獲得<b>【學院硬幣 x 5】</b>，並於戰績榜顯示專屬代表符號：</p>
+            <div class="tag-container">
+              <span class="tag-title">★ 擊殺王</span>
+              <span class="tag-title">▲ 助攻王</span>
+              <span class="tag-title">※ 積分王</span>
+              <span class="tag-title">☆ 貢獻王</span>
+              <span class="tag-title">● 打野王</span>
+              <span class="tag-title">■ 據點王</span>
+              <span class="tag-title">◆ 奪劍王</span>
+              <span class="tag-title">◎ 推塔王</span>
+              <span class="tag-title">▼ 奉獻王</span>
             </div>
+          </li>
+        </ul>
 
-            <div style="text-align:center; margin-top:25px;">
-              <button class="btn-close" onclick="window.close()">關閉視窗</button>
-            </div>
-          </body>
-        </html>
-      `);
-    }
+        <div class="warning-box">
+          <h3 style="color:#b30000; margin-top:0; border-left:none; padding-left:0;">🛡️【重要規章：戰場風紀與防弊監控機制】</h3>
+          <p>戰場全面啟用<b>多維度動態行為監控系統</b>（針對同 IP 異常互殺、短時間連續餵分、多次死亡卻毫無實質作戰與貢獻等破壞競技平衡之行為進行全時段自動分析）：</p>
+          <ul>
+            <li>系統以玩家<b>全方位戰場實質貢獻度</b>為評估依據，若判定對抗行為異常、短時間重複擊殺同一目標或缺乏實質作戰貢獻，將<b>即時自動攔截並中斷計分</b>，該次擊殺不予發放任何積分、貢獻分與戰績。</li>
+            <li>系統配備<b>階梯式警示與嚴懲機制</b>：初期異常（第 1~2 次）將予以系統警報提示；若經警告仍持續違規（第 3~4 次），系統將<b>每次直接扣除個人戰場積分 30 點上繳學院，並通報全場</b>。</li>
+            <li><b>嚴重累犯者（累計達 5 次警告）</b>：系統將<b>強制驅逐出場、列入當場次黑名單禁止再次進場（含組隊跟隨）、沒收全額戰場積分平分給雙方學院、全伺服器公告懲戒，並直接重罰扣除角色本體學院總積分 100 點</b>！請各位勇士遵守公平競技原則，切勿投機取巧。</li>
+          </ul>
+        </div>
+
+        <div class="btn-container">
+          <button class="btn-close" onclick="window.close()">關閉視窗</button>
+        </div>
+      </body>
+    </html>
+  `);
+  popup.document.close();
+}
     function openDisclaimer() {
       
       openCustomModal(`
