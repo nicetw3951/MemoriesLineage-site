@@ -3,277 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="懷舊の天堂｜資料查詢頁面" />
-  <meta property="og:description" content="探索遊戲資料、職業介紹與地圖設定，重溫天堂的經典回憶。" />
+  <meta property="og:title" content="懷舊の天堂｜資料查詢專區" />
+  <meta property="og:description" content="重溫天堂經典感動！探索最新設定、職業數值、特色副本與完整活動指南。" />
   <meta property="og:image" content="https://nicetw3951.github.io/MemoriesLineage-site/Image/Title.jpg" />
   <meta property="og:url" content="https://nicetw3951.github.io/MemoriesLineage-site/" />
   <meta property="og:type" content="website" />
-  <title>懷舊の天堂｜資料查詢頁面</title>
+  <title>懷舊の天堂｜官方資料查詢專區</title>
+  
   <style>
-    * {
+    /* ==================== 全域基礎重置 ==================== */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body, html {
-      height: 100%;
-      font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
-      background-color: #1a1a1a;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; /* 防止整個視窗出現雙捲軸 */
+    :root {
+      --primary-blue: #1b73ba;
+      --primary-blue-dark: #0d5289;
+      --accent-purple: #6f42c1;
+      --accent-gold: #ffcc00;
+      --accent-red: #d90429;
+      --bg-dark: #121316;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --font-main: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", "Segoe UI", Roboto, sans-serif;
     }
 
-.brand-bar {
-  position: relative;
-  width: 100%;
-  min-height: 110px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-  flex-shrink: 0;
-  z-index: 1000;
-  overflow: hidden; /* 隱藏超出邊界的背景 */
-}
+    body, html {
+      height: 100%;
+      font-family: var(--font-main);
+      background-color: var(--bg-dark);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* 防止整頁出現雙重滾動條 */
+      color: #2b2b2b;
+    }
 
-.brand-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('Image/banner.jpg');
-  background-repeat: no-repeat; /* 改為不重複 */
-  background-size: cover;       /* 改為 cover 自動縮放並完整填滿 */
-  background-position: center;  /* 圖片居中顯示 */
-  z-index: -1;
-}
+    /* ==================== 頂部品牌橫幅 (Brand Banner) ==================== */
+    .brand-bar {
+      position: relative;
+      width: 100%;
+      min-height: 110px;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+      flex-shrink: 0;
+      z-index: 1000;
+      overflow: hidden;
+    }
 
-@keyframes slideBannerGPU {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0); /* 平移自身寬度的 50% 達成無縫循環 */
-  }
-}
+    .brand-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('Image/banner.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      opacity: 0.85;
+    }
+
     .company-name {
       font-family: "Georgia", "Times New Roman", serif;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: bold;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
       letter-spacing: 4px;
       text-transform: uppercase;
-      background: linear-gradient(45deg, #4facfe, #6a5acd, #8a2be2);
+      background: linear-gradient(135deg, #4facfe 0%, #a18cd1 50%, #fbc2eb 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.4),
-                   0 0 20px rgba(138,43,226,0.7),
-                   0 0 30px rgba(79,172,254,0.6);
-      background-color: rgba(17, 17, 17, 0.85);
-      padding: 0.5rem 1.8rem;
-      border-radius: 12px;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(138, 43, 226, 0.8));
       text-align: center;
       margin: 0 10px;
     }
 
-/* ==================== 電腦版設定 (>= 769px) ==================== */
-.header-nav {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 電腦版固定一排 10 個，自動排成兩排 */
-  gap: 8px;
-  padding: 12px 18px;
-  
-  /* 與 brand-bar 相同的靜態背景圖 */
-  background-color: #000;
-  background-image: url('Image/banner.jpg');
-  background-repeat: repeat-x;
-  background-position: center;
-  background-size: cover; /* 或使用 auto 100%，依您 banner 圖片的比例需求調整 */
+    /* ==================== 頂部導航按鈕列 (Header Nav) ==================== */
+    .header-nav {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr); /* 電腦版固定每排 10 顆按鈕 */
+      gap: 7px;
+      padding: 10px 18px;
+      background-color: #000;
+      background-image: url('Image/banner.jpg');
+      background-repeat: repeat-x;
+      background-position: center;
+      background-size: cover;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 2px solid #000;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 10px rgba(0, 0, 0, 0.6);
+      z-index: 90;
+      flex-shrink: 0;
+    }
 
-  /* 配合同步改為深色質感的邊框與陰影（取代原本淺灰石紋的亮白線條） */
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 2px solid #000000;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 3px 8px rgba(0, 0, 0, 0.6);
-  z-index: 90;
-}
-.header-nav button {
-  width: 100%;
-  padding: 8px 4px;
-  font-size: 0.92rem;
-  font-weight: bold;
-  cursor: pointer;
-  white-space: nowrap;
-  background: linear-gradient(180deg, #1b73ba 0%, #0d5289 100%);
-  color: #ffffff;
-  border: 1px solid #083c66;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-  transition: all 0.15s ease;
-}
+    .header-nav button {
+      width: 100%;
+      padding: 8px 4px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      background: linear-gradient(180deg, #1b73ba 0%, #0d5289 100%);
+      color: #ffffff;
+      border: 1px solid #083c66;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+      transition: all 0.2s ease;
+      outline: none;
+    }
 
-.header-nav button:hover,
-.header-nav button.active {
-  background: linear-gradient(180deg, #258cdb 0%, #1063a5 100%);
-  border-color: #0b4a7d;
-  box-shadow: 0 0 6px rgba(13, 82, 137, 0.6), inset 0 1px 0 rgba(255,255,255,0.5);
-  transform: translateY(-1px);
-}
+    .header-nav button:hover {
+      background: linear-gradient(180deg, #258cdb 0%, #1063a5 100%);
+      border-color: #1a78c2;
+      box-shadow: 0 0 8px rgba(37, 140, 219, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      transform: translateY(-1px);
+    }
 
-.Show-Site {
-  position: fixed;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  z-index: 999; /* 確保浮在內容最上層 */
-  
-  /* ============ 新增排版設定 ============ */
-  display: flex;         /* 使用 Flexbox */
-  flex-direction: column; /* 讓圖片和文字垂直排列 (文字在圖下方) */
-  align-items: center;    /* 水平居中對齊圖片和文字 */
-  cursor: pointer;        /* 讓整個區域都有滑鼠手指圖示 */
-}
-/* ============ 新增文字樣式 ============ */
-.site-text {
-  margin-top: 5px;          /* 文字與圖片的間距 */
-  color: #00c300;           /* 文字顏色 (可搭配 LINE 的綠色) */
-  font-size: 14px;          /* 字體大小 */
-  font-weight: bold;        /* 加粗字體 */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* 加入文字陰影，確保在深色底圖上清晰 */
-  white-space: nowrap;      /* 強制不換行 */
-}
-.Show-Site img {
-  width: 120px;
-  height: auto;
-  display: block;
-}
+    .header-nav button.active {
+      background: linear-gradient(180deg, #2e9bf5 0%, #1063a5 100%);
+      border-color: #ffd700;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      color: #fffffa;
+      transform: translateY(-1px);
+    }
 
-/* 手機版設定（寫在 @media (max-width: 768px) 內部） */
-
-/* ==================== 手機與平板專用優化 (<= 768px) ==================== */
-@media (max-width: 768px) {
-  /* 1. 縮減頂部 Banner 高度，避免吃掉畫面 */
-  .brand-bar {
-    min-height: 70px;
-    height: 9vh;
-  }
-  .company-name {
-    font-size: 1.8rem;
-    padding: 0.2rem 1rem;
-  }
-
-/* 2. 手機版改為雙排/三排網格排列（一排 4 個，直接點選不需滑動） */
-  .header-nav {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 手機端固定一排 4 顆按鈕 */
-    gap: 6px;                             /* 縮小間距節省空間 */
-    padding: 8px 10px;
-    overflow-x: visible;                  /* 關閉橫向滾動 */
-
-    /* 靜態背景 */
-    background-color: #000;
-    background-image: url('Image/banner.jpg');
-    background-repeat: repeat-x;
-    background-position: center;
-    background-size: cover;
-  }
-
-  /* 按鈕尺寸緊湊化，確保 4 個字完整顯示不折行 */
-  .header-nav button {
-    width: 100%;
-    padding: 6px 2px;
-    font-size: 0.78rem;                    /* 適度縮小字體防止溢出 */
-    letter-spacing: -0.5px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  /* 美化滑動條 (改為深色半透明，融合深色底圖) */
-  .header-nav::-webkit-scrollbar {
-    height: 3px;
-  }
-  .header-nav::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.25); /* 取代原本的淺灰色 #a8b0b8 */
-    border-radius: 2px;
-  }
-
-  /* 3. 修正內容區邊距，讓手機螢幕空間最大化 */
-  .content {
-    padding: 1rem 0.8rem;
-  }
-  .content-card {
-    padding: 1.2rem;
-  }
-
-  .Show-Site {
-    top: auto;                    /* 解除垂直置中 */
-    bottom: 75px;                 /* 固定在右下角，避免遮擋內文 */
-    right: 15px;
-    transform: none;              /* 取消置中偏移 */
-  }
-
-  .Show-Site img {
-    width: 50px;                  /* 維持放大後的 50px */
-    height: auto;
-}
-  .donate-btn {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
-/* 下方滾動內容區塊 */
+    /* ==================== 主要內容展示區 (Content Area) ==================== */
     .content {
       flex: 1;
       overflow-y: auto;
       padding: 2rem 1.5rem 6rem 1.5rem;
-      background-color: #1a1a1a;
+      background-color: #16171b;
       background-image: url('Image/background.jpg');
       background-size: cover;
-      background-attachment: fixed; /* 保留固定不隨內容滑動 */
-
-      /* 水平置中，垂直往下偏移（數值依上方 header 實際高度微調，常見為 120px ~ 180px） */
+      background-attachment: fixed;
       background-position: center 100px;
       background-repeat: no-repeat;
+      -webkit-overflow-scrolling: touch;
     }
-    /* 內容白色卡片容器，確保背景圖不會干擾文字閱讀 */
+
     .content-box {
       max-width: 1100px;
       margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      padding: 25px 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      line-height: 1.8;
+      background-color: var(--card-bg);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 28px 32px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+      line-height: 1.85;
+      animation: contentFadeIn 0.3s ease;
     }
 
-    /* 原始文字風格類別 */
-    .data-block {
-      font-size: 1.15rem;
-      color: #333;
-      text-align: left;
-      padding: 0.5rem 0;
-      line-height: 1.7;
+    @keyframes contentFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
+    /* 各種文字層級與醒目標記 (保留原本 class 相容性) */
+    .title-main {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #3b1410;
+      text-align: center;
+      margin: 1.5rem 0;
+      line-height: 2.1;
+    }
+
+    .h2-purple {
+      font-size: 1.6rem;
+      color: var(--accent-purple);
+      font-weight: bold;
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+
     .h2-red {
       font-size: 1.4rem;
-      color: #d90429;
+      color: var(--accent-red);
       font-weight: bold;
       text-align: left;
       padding: 0.8rem 0 0.3rem 0;
     }
-    .alert {
-      color: green;
-      font-size: 28px;
-      font-weight: bold;
-      animation: blink 1s infinite;
-      text-align: center;
-    }
+
     .h2-blue {
       font-size: 1.25rem;
       color: #0056b3;
@@ -281,6 +198,7 @@
       text-align: left;
       padding: 0.6rem 0 0.2rem 0;
     }
+
     .h2-green {
       font-size: 1.2rem;
       color: #198754;
@@ -288,21 +206,24 @@
       text-align: left;
       padding: 0.5rem 0;
     }
-    .h2-purple {
-      font-size: 1.6rem;
-      color: #6f42c1;
-      font-weight: bold;
-      text-align: center;
+
+    .data-block {
+      font-size: 1.15rem;
+      color: #333;
+      text-align: left;
       padding: 0.5rem 0;
+      line-height: 1.75;
     }
+
     .text-gold {
       font-size: 2rem;
       font-weight: bold;
       color: #ffcc00;
       text-align: center;
       padding: 1rem 0;
-      text-shadow: 2px 2px 0 #000000;
+      text-shadow: 2px 2px 0 #000;
     }
+
     .subtitle-red {
       font-size: 1.8rem;
       font-weight: bold;
@@ -311,171 +232,313 @@
       margin-bottom: 1.5rem;
       text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
     }
-    .title-main {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #4a1c17;
-      text-align: center;
-      margin: 1.5rem 0;
-      line-height: 2;
-    }
-    
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
-    }
 
-    /* 浮動按鈕與視窗 */
-    .donate-box {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 990;
-    }
-    .Show-Site {
-      position: fixed;
-      top: 55%;
-      right: 20px;
-      transform: translateY(-50%);
-      z-index: 990;
-    }
-    .promo-btn {
-      width: 60px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      transition: transform 0.2s;
-    }
-    .promo-btn:hover {
-      transform: scale(1.08);
-    }
-    .donate-btn {
-      background: linear-gradient(45deg, #6a5acd, #00bfff);
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(106,90,205,0.6);
-      transition: all 0.3s ease;
-    }
-    .donate-btn:hover {
-      box-shadow: 0 0 30px rgba(0,191,255,0.9);
-      transform: scale(1.05);
-    }
-
-    /* Modal 視窗 */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.7);
-    }
-    .modal-content {
-      background: #fff;
-      margin: 12vh auto;
-      padding: 25px;
-      border-radius: 12px;
-      width: 320px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 0 30px rgba(106,90,205,0.8);
-    }
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
+    .alert {
+      color: #28a745;
       font-size: 28px;
-      cursor: pointer;
-      color: #666;
+      font-weight: bold;
+      animation: blink 1.2s infinite;
+      text-align: center;
     }
-    .close:hover { color: #000; }
-    .qrcode { width: 200px; margin-top: 15px; }
 
-    /* 各種功能按鈕樣式 */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    /* 表格排版防溢出容器 */
+    .rune-table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    /* 各類動作按鈕 */
     .download-btn {
       background-color: #28a745;
-      color: white;
+      color: #ffffff;
       border: none;
       padding: 9px 18px;
       margin: 6px 6px 6px 0;
       font-size: 0.95rem;
-      border-radius: 5px;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
       display: inline-block;
       text-decoration: none;
-      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(40, 167, 69, 0.35);
+      transition: all 0.2s ease;
     }
     .download-btn:hover {
       background-color: #218838;
+      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.5);
       transform: translateY(-2px);
     }
+
     .download-btn-red {
       background-color: #dc3545;
-      color: white;
+      color: #ffffff;
       border: none;
       padding: 9px 18px;
       margin: 6px 6px 6px 0;
       font-size: 0.95rem;
-      border-radius: 5px;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
     .download-btn-red:hover {
       background-color: #c82333;
       transform: translateY(-2px);
     }
+
     .download-btn-orange {
       background-color: #fd7e14;
-      color: #222;
+      color: #ffffff;
       border: none;
       padding: 9px 18px;
       margin: 6px 6px 6px 0;
       font-size: 0.95rem;
-      border-radius: 5px;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
     .download-btn-orange:hover {
       background-color: #e96b00;
       transform: translateY(-2px);
     }
+
     .download-btn-purple {
       background-color: #6f42c1;
-      color: #fff;
+      color: #ffffff;
       border: none;
       padding: 9px 18px;
       margin: 6px 6px 6px 0;
       font-size: 0.95rem;
-      border-radius: 5px;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
     .download-btn-purple:hover {
       background-color: #5a32a3;
       transform: translateY(-2px);
     }
 
-    /* 圖片列表排版防破版 */
-    .rune-table-container {
+    /* ==================== 浮動入口 (LINE社群與贊助) ==================== */
+    .Show-Site {
+      position: fixed;
+      top: 52%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 990;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .Show-Site:hover {
+      transform: translateY(-50%) scale(1.05);
+    }
+    .Show-Site img {
+      width: 110px;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .site-text {
+      margin-top: 6px;
+      color: #00e000;
+      font-size: 14px;
+      font-weight: 800;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+      white-space: nowrap;
+    }
+
+    .donate-box {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 990;
+    }
+    .donate-btn {
+      background: linear-gradient(45deg, #6a5acd, #00bfff);
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 11px 22px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(106, 90, 205, 0.6);
+      transition: all 0.3s ease;
+    }
+    .donate-btn:hover {
+      box-shadow: 0 6px 25px rgba(0, 191, 255, 0.9);
+      transform: scale(1.06);
+    }
+
+    /* ==================== 彈窗樣式 (優化防阻擋) ==================== */
+    .modal, .info-modal {
+      display: none;
+      position: fixed;
+      z-index: 2500;
+      left: 0;
+      top: 0;
       width: 100%;
-      overflow-x: auto;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(3px);
+    }
+    .modal-content {
+      background: #ffffff;
+      margin: 12vh auto;
+      padding: 28px;
+      border-radius: 12px;
+      width: 330px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: modalFadeIn 0.25s ease;
+    }
+    .info-modal-wrapper {
+      position: relative;
+      background: #ffffff;
+      margin: 4vh auto;
+      width: 90%;
+      max-width: 920px;
+      max-height: 90vh;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+      animation: modalFadeIn 0.25s ease;
+    }
+    .close, .info-modal-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      line-height: 32px;
+      text-align: center;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    .info-modal-close-btn {
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .close:hover, .info-modal-close-btn:hover {
+      color: #000;
+      background: #e5e5e5;
+    }
+    .info-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      max-height: calc(90vh - 40px);
+      -webkit-overflow-scrolling: touch;
+      color: #333;
+    }
+    .faq-modal-iframe {
+      width: 100%;
+      height: calc(88vh - 40px);
+      border: none;
+      display: block;
+    }
+    .qrcode {
+      width: 200px;
+      margin-top: 15px;
+      border-radius: 6px;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==================== 手機與平板專用響應式 (<= 768px) ==================== */
+    @media (max-width: 768px) {
+      .brand-bar {
+        min-height: 70px;
+        height: 9vh;
+      }
+      .company-name {
+        font-size: 1.75rem;
+        padding: 0.2rem 1rem;
+      }
+      .header-nav {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 8px 10px;
+      }
+      .header-nav button {
+        padding: 6px 2px;
+        font-size: 0.78rem;
+        letter-spacing: -0.5px;
+      }
+      .content {
+        padding: 1rem 0.8rem 5rem 0.8rem;
+      }
+      .content-box {
+        padding: 18px 16px;
+      }
+      .Show-Site {
+        top: auto;
+        bottom: 75px;
+        right: 15px;
+        transform: none;
+      }
+      .Show-Site:hover {
+        transform: none;
+      }
+      .Show-Site img {
+        width: 52px;
+      }
+      .site-text {
+        font-size: 12px;
+      }
+      .donate-box {
+        bottom: 18px;
+        right: 15px;
+      }
+      .donate-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      .info-modal-wrapper {
+        width: 95%;
+        margin: 3vh auto;
+        max-height: 94vh;
+      }
+      .info-modal-body {
+        padding: 16px;
+      }
     }
   </style>
 
   <script>
-    const List = ["更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹", "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹", "娃娃介紹", "下載專區", "贊助相關", "遊戲內容Q&A", "疑難雜症", "待更新", "待更新", "待更新", "待更新", "待更新"];
+    const List = [
+      "更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹",
+      "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹",
+      "娃娃介紹", "下載專區", "贊助相關", "遊戲內容Q&A", "疑難雜症",
+      "待更新", "待更新", "待更新", "待更新", "待更新"
+    ];
     const API_URL = "https://script.google.com/macros/s/AKfycbw9mAM_Br8ZlFn5CWL0E9Q3JSkHilINtl0R9-B-G_ipeGrUuoxVP0JWSwJ6X1b6oiXT/exec";
     
     let commentInterval = null;
     let currentQuestionId = null;
 
-    // 保留完整原本的 DATA 內容
-const DATA = [
+    // 保留完整原本的 DATA 內容 (數據零遺失)
+    const DATA = [
       // 0: 更新內容
       `
 	  <span class="h2-green"></span>
@@ -490,6 +553,12 @@ const DATA = [
       <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
       <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
 	  
+	  <span class="h2-blue">★★ 2026/11/06 更新內容 ★★</span><br>
+      <span class="data-block">學院戰場2.0全新改版上線，詳細資訊可至上方查看<BR>
+	  屍魂塔副本新增計時器於左上方<BR>
+	  強化城堡守護者之塔強度<BR>
+	  </span><BR>
+
 	  <span class="h2-blue">★★ 2026/11/03 更新內容 ★★</span><br>
       <span class="data-block">穿雲箭調整畫面裡有其他血盟玩家也可使用<BR>
 	  </span><BR>
@@ -1863,7 +1932,8 @@ const DATA = [
       "待更新","待更新","待更新","待更新","待更新"
     ];
 
-    // 初始化按鈕
+
+    // ================= 頁面初始化與導航互動 =================
     window.addEventListener("DOMContentLoaded", () => {
       const headerNav = document.getElementById("headerNav");
       List.forEach((name, i) => {
@@ -1889,9 +1959,9 @@ const DATA = [
         commentInterval = null;
       }
 
-      // 疑難雜症外跳
+      // 疑難雜症內嵌 (Modal 彈窗避免被阻擋)
       if (title === "疑難雜症") {
-        window.open("F&Q.html", "_blank", "width=800,height=600");
+        openFaqModal();
         return;
       }
 
@@ -1922,7 +1992,6 @@ const DATA = [
           </div>
         `;
         loadQA();
-        // 綁定定時器至變數，切頁面能正確被清除
         commentInterval = setInterval(loadQA, 10000);
         return;
       }
@@ -2025,10 +2094,41 @@ const DATA = [
       }
     }
 
-    // 各活動完整彈跳視窗內容
+    // ================= 彈窗與遮罩控制函式 (防阻擋) =================
+    function openCustomModal(html) {
+      const modal = document.getElementById("infoModal");
+      const body = document.getElementById("infoModalBody");
+      if (!modal || !body) return;
+      const cleanedHtml = html.replace(/window\.close\(\)/g, "closeCustomModal()");
+      body.innerHTML = cleanedHtml;
+      modal.style.display = "block";
+    }
+
+    function closeCustomModal() {
+      const modal = document.getElementById("infoModal");
+      if (modal) modal.style.display = "none";
+    }
+
+    function openFaqModal() {
+      const modal = document.getElementById("faqModal");
+      if (modal) modal.style.display = "block";
+    }
+
+    function closeFaqModal() {
+      const modal = document.getElementById("faqModal");
+      if (modal) modal.style.display = "none";
+    }
+
+    function handleModalClick(e, modalId) {
+      if (e.target.id === modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+    }
+
+    // 各活動彈跳視窗呼叫
     function openClanComeIn() {
-      let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <html>
           <head><title>AT團申請</title></head>
           <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
@@ -2046,8 +2146,8 @@ const DATA = [
     }
 
     function openCastleWar() {
-      let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <html>
           <head><title>攻城戰介紹</title></head>
           <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
@@ -2064,8 +2164,8 @@ const DATA = [
     }
 
     function openBossSkillDesc() {
-      let popup = window.open("", "BossSkillDesc", "width=650,height=620,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <!DOCTYPE html>
         <html>
           <head>
@@ -2098,8 +2198,8 @@ const DATA = [
       `);
     }
 	function openBountySheriffDesc() {
-	  let popup = window.open("", "BountySheriffDesc", "width=680,height=680,scrollbars=yes");
-	  popup.document.write(`
+	  
+	  openCustomModal(`
 		<!DOCTYPE html>
 		<html>
 		  <head>
@@ -2143,8 +2243,8 @@ const DATA = [
 	  `);
 	}	
 	function openSurvivalEvent() {
-	  let popup = window.open("", "SurvivalEvent", "width=700,height=750,scrollbars=yes,resizable=yes");
-	  popup.document.write(`
+	  
+	  openCustomModal(`
 		<!DOCTYPE html>
 		<html>
 		  <head>
@@ -2233,7 +2333,72 @@ const DATA = [
 			  .btn-close:hover {
 				background: #212529;
 			  }
-			</style>
+			
+    /* 通用內容彈窗 (取代 window.open 避免瀏覽器攔截阻擋) */
+    .info-modal {
+      display: none;
+      position: fixed;
+      z-index: 2500;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(2px);
+    }
+    .info-modal-wrapper {
+      position: relative;
+      background: #ffffff;
+      margin: 4vh auto;
+      width: 90%;
+      max-width: 920px;
+      max-height: 90vh;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: modalFadeIn 0.25s ease;
+    }
+    .info-modal-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #555;
+      background: rgba(255,255,255,0.85);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s;
+    }
+    .info-modal-close-btn:hover {
+      color: #000;
+      background: #eee;
+    }
+    .info-modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      max-height: calc(90vh - 40px);
+      -webkit-overflow-scrolling: touch;
+      color: #333;
+    }
+    .faq-modal-iframe {
+      width: 100%;
+      height: calc(88vh - 40px);
+      border: none;
+      display: block;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 		  </head>
 		  <body>
 			<div class="card">
@@ -2308,12 +2473,12 @@ const DATA = [
 		  </body>
 		</html>
 	  `);
-	  popup.document.close();
+	  
 	}
 
     function open9clock40event() {
-      let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <html>
           <head><title>九點四十分寶藏地宮</title></head>
           <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
@@ -2328,8 +2493,8 @@ const DATA = [
     }
 
     function open10clockevent() {
-      let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <html>
           <head><title>十點無限大戰</title></head>
           <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
@@ -2345,8 +2510,8 @@ const DATA = [
     }
 
     function openTimeClockevent() {
-      let popup = window.open("", "Disclaimer", "width=650,height=600,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <html>
           <head><title>定時獎勵怪出沒</title></head>
           <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
@@ -2360,8 +2525,8 @@ const DATA = [
       `);
     }
 
-    function openAcademyBattle() {
-      let popup = window.open("", "Disclaimer", "width=920,height=780,scrollbars=yes");
+function openAcademyBattle() {
+      let popup = window.open("", "Disclaimer", "width=960,height=820,scrollbars=yes");
       popup.document.write(`
         <!DOCTYPE html>
         <html>
@@ -2377,83 +2542,135 @@ const DATA = [
               .highlight { color: #b30000; font-weight: bold; }
               .faction-pojun { color: #b30000; font-weight: bold; }
               .faction-yushou { color: #0b4f8a; font-weight: bold; }
+              .tag-title { display: inline-block; background: #eef4fa; border: 1px solid #b8d4ee; color: #0b4f8a; border-radius: 4px; padding: 1px 6px; font-size: 13.5px; margin: 2px 4px 2px 0; font-weight: bold; }
+              .objective-box { background-color: #f7f9fa; border: 1px solid #dbe2e8; border-radius: 6px; padding: 12px 16px; margin: 10px 0; }
               .warning-box { background-color: #fff2f2; border: 1.5px solid #d9534f; border-radius: 6px; padding: 12px 16px; margin-top: 18px; }
-              .btn-close { padding: 8px 24px; font-size: 15px; cursor: pointer; border-radius: 4px; background: #333; color: #fff; border: none; }
+              .btn-close { padding: 8px 26px; font-size: 15px; cursor: pointer; border-radius: 4px; background: #333; color: #fff; border: none; }
               .btn-close:hover { background: #555; }
             </style>
           </head>
           <body>
-            <h2>⚔️『學院戰場』活動完整指南 ⚔️</h2>
+            <h2>⚔️『學院戰場 2.0』活動完整指南 ⚔️</h2>
 
             <h3>【一、 學院陣營與模式投票】</h3>
             <ul>
               <li><b>學院選擇</b>：請至主城尋找「學院管理員」選擇加入 <span class="faction-pojun">破軍學院</span> 或 <span class="faction-yushou">禦守學院</span>。可免費退學（學院積分歸零），亦可透過元寶商人購買「轉學證明」保留積分轉學。</li>
               <li><b>活動進程</b>：每日活動開放前 5 分鐘進行全服廣播並開啟「戰場模式投票」，活動正式開啟後戰鬥時間為 20 分鐘，時間截止時地圖內所有玩家將自動傳送回主城並進行最終結算。</li>
-              <li><b>分隊模式投票</b>：玩家可於管理員處投下期望的模式（1: 原學院分隊、2: 個人全隨機分隊、3: 組隊隨機分隊）。開門時系統將由<b>前兩高票依比例抽籤決定</b>，避免單一陣營惡意灌票。</li>
+              <li><b>分隊模式投票</b>：玩家可於管理員處投下期望的模式（1: 原學院分隊、2: 個人全隨機分隊、3: 組隊隨機分隊）。開門時系統將由<b>前兩高票依比例抽籤決定</b>，避免單一陣營惡意灌票（抽中個人隨機模式時，進場將自動退出隊伍各自為戰）。</li>
             </ul>
 
-            <h3>【二、 進場規則、匿名保護與活躍判定】</h3>
+            <h3>【二、 進場規則、身分匿名與貢獻度達標】</h3>
             <ul>
-              <li><b>入場與初始福利</b>：活動開始後由傳送師進場，地圖左側為破軍傳入與復活點，右側為禦守傳入與復活點；當天首次進場即贈送 <span class="highlight">50 點個人戰場積分</span>。</li>
-              <li><b>外觀與身分匿名</b>：進場後所有玩家角色名稱將強制匿名，魔法娃娃統一變更為經驗公主外觀（能力完全保留），並隱藏城主王冠；地圖內使用「!」(大喊頻道)將自動轉為「學院專屬頻道」，僅同陣營戰友可見並通報戰術座標。</li>
-              <li><b>戰場保護與限制</b>：戰場內全面禁止順移、召喚寵物，且僅能透過重生點的 NPC 或重登安全離場。剛復活的玩家具有保護機制，不會立即顯示主動攻擊劍圖示。雙方陣營基地配置守護教官，將主動擊退入侵的敵方玩家。</li>
-              <li><b>活躍學員機制</b>：
+              <li><b>入場與陣營基地</b>：活動開始後由傳送師進場，地圖左側為破軍傳入與復活點，右側為禦守傳入與復活點。雙方陣營基地配置守護教官，將主動擊退入侵的敵方玩家；剛復活之玩家享有保護機制，不會立即顯示主動攻擊劍圖示。</li>
+              <li><b>外觀匿名與戰術溝通</b>：進場後所有玩家角色名稱將強制匿名，魔法娃娃統一變更為經驗公主外觀（能力完全保留），並隱藏城主王冠。戰場內全面禁止順移、召喚寵物，且<b>戰場內禁止使用大喊頻道</b>，請直接使用一般頻道與同陣營戰友溝通。</li>
+              <li><span class="highlight">【學院貢獻度達標與在線資格】（核心重點）</span>：
                 <ul>
-                  <li>進場後必須主動<b>擊殺/協助擊殺怪物、擊殺或助攻敵對玩家</b>才會啟動活躍計時。</li>
-                  <li>若超過 <span class="highlight">3 分鐘未參與戰鬥</span>，活躍狀態將暫停累積；在戰場內累積作戰達 <span class="highlight">10 分鐘</span>（死亡狀態不計入）即達標活躍學員，享有學院總積分分紅資格（即使無活躍仍可獲得個人基本分）。</li>
+                  <li>學員在戰場中的各項行動（擊殺/助攻玩家、擊殺怪物、爭奪據點、奪劍護送、摧毀/佔領守護塔）皆會持續累積<b>「學院貢獻分」</b>。當貢獻分達標時，系統會立即發出通知提示。</li>
+                  <li>活動結束結算時，<b>個人學院貢獻分達標且「保持在線」</b>的活躍學員，方享有學院總積分分紅資格並可參與「榮譽稱號王」評選（<span class="highlight">貢獻度未達標或結算時處於離線狀態者，皆無法獲得任何結算獎勵、分紅與稱號</span>）。</li>
                 </ul>
               </li>
             </ul>
 
-            <h3>【三、 學院神聖 BUFF 與戰場逆轉弱勢機制】</h3>
+            <h3>【三、 戰場三大核心戰略爭奪】</h3>
+            <div class="objective-box">
+              <p><b>🏰【中央守護者之塔】（戰略防守與積分泉源）</b></p>
+              <ul>
+                <li>守護塔坐落於戰場中央廣場，初始為中立狀態，可由任一陣營攻打摧毀以奪取佔領權。</li>
+                <li><b>防護機制</b>：守護之塔受到弓箭與飛刀傷害<b>減半</b>，並享有單次傷害上限防護；佔領方同陣營成員無法攻擊己方守護塔，己方守護塔可施放治癒術，單次補血量有上限僅微量補血。</li>
+                <li><b>佔領與防禦收益</b>：佔領陣營每 5 秒自動獲得 <span class="highlight">學院總積分 +7 分</span>；在守護塔周圍 8 格範圍內的玩家每 5 秒獲得 <span class="highlight">學院貢獻分 +2 分</span>（設有個人動態累積上限，積極參與擊殺與助攻可持續擴充上限）。</li>
+                <li><b>摧毀與重生</b>：推倒守護塔將進行全場廣播並計入最後一擊者個人「推塔數」，守護塔於 5 秒後將重生成為擊破陣營的所屬塔！</li>
+              </ul>
+            </div>
+
+            <div class="objective-box">
+              <p><b>⚔️【賢者之劍奪劍護送】（兵家必爭積分神器）</b></p>
+              <ul>
+                <li>戰場<b>上方平台</b>將降臨神聖神器「賢者之劍」，全場勇士皆可拾取。拾取後持劍者將散發詛咒枷鎖。</li>
+                <li><b>持劍負面挑戰</b>：持劍者身負巨力，每 5 秒將承受藥水霜化術、魔法封印（並有 60% 機率觸發骷髏破壞造成暈眩）效果，極度考驗走位與團隊護駕！</li>
+                <li><b>持劍與護送收益</b>：持劍者每 5 秒獲得 <span class="highlight">貢獻分 +5、學院總積分 +5</span>；在持劍者畫面範圍內的同陣營護送戰友，每 5 秒亦可獲得 <span class="highlight">貢獻分 +3</span>（護送貢獻同樣設有個人動態累積上限，參與擊殺與助攻可持續擴充上限）！</li>
+                <li><b>成功護送基地</b>：將賢者之劍一路護送回己方陣營基地（復活點周邊 4 格內），賢者之劍將化為強大能量回收，所屬學院立即獲得 <span class="highlight">學院總積分 +250 分</span>，持劍者獲得 <span class="highlight">貢獻分 +50 與奪劍次數 +1</span>！賢者之劍將於 1 分鐘後再次於上方平台重現。</li>
+                <li><b>斬殺與重置</b>：持劍者陣亡或離線時劍會掉落於地面，斬殺持劍者可獲得 <span class="highlight">貢獻分 +20 與學院總積分 +20</span>；掉落於地面超過 30 秒未被拾取，將自動回歸上方平台。</li>
+              </ul>
+            </div>
+
+            <div class="objective-box">
+              <p><b>🚩【據點首領突襲】（強效Buff逆轉戰局）</b></p>
+              <ul>
+                <li>位於戰場下方據點，由據點首領與其隨從部隊駐守，首領死亡後每隔 2 分鐘重新降臨。</li>
+                <li>最後一擊擊殺首領者獲得 <span class="highlight">貢獻分 +30、據點首領擊殺數 +1</span>，參與攻擊之同陣營助攻隊友獲得 <span class="highlight">貢獻分 +3</span>；所屬學院獲得 <span class="highlight">學院總積分 +150（若最後一擊者處於神聖光環下高達 +300 分）</span>！</li>
+                <li>成功擊殺據點首領之陣營全體成員，立即享有<b>【全體弱勢 BUFF 提升一階（持續 2 分鐘）】</b>的強大戰力加成！</li>
+              </ul>
+            </div>
+
+            <h3>【四、 學院神聖 BUFF、弱勢逆轉與傷害上限】</h3>
             <ul>
-              <li><b>神聖 BUFF 啟動</b>：戰場內 10 格範圍內集結 3 名同陣營戰友，每 5 秒自動觸發 10 秒神聖光環（同陣營可互相施放聖結界、生命的祝福、體力回復術）：
+              <li><b>戰場傷害保護</b>：戰場全圖受神聖結界保護，單次攻擊傷害設有上限防護。</li>
+              <li><b>神聖 BUFF 啟動</b>：戰場內 10 格範圍內集結 3 名同陣營戰友（或持有專屬學院道具增益），每 5 秒自動觸發 10 秒神聖光環（同陣營可互相施放聖結界、生命的祝福、體力回復術）：
                 <ul>
-                  <li><span class="faction-yushou">禦守學院神聖 BUFF</span>：承受普攻單次傷害上限不超過自身最大 HP 的 10%（最低不低於 1,000）；受到普攻時有 15% 機率完全免傷並 100% 反彈該傷害；普攻命中失敗時有 25% 強制修正為命中。</li>
-                  <li><span class="faction-pojun">破軍學院神聖 BUFF</span>：普攻每下附加 150 點真實傷害（三重矢每箭附加 50 點真實傷害）；命中失敗有 25% 強制命中；攻擊帶有禦守 BUFF 之目標時，有 15% 機率無視其防護打出原始傷害。</li>
-                  <li><b>怪物增傷效果</b>：兩種神聖 BUFF 攻擊小怪皆附加其最大 HP 10% 固定傷害，攻擊小 BOSS 附加最大 HP 5% 固定傷害（技能魔法傷害不受傷害上限限制）。</li>
+                  <li><span class="faction-yushou">禦守學院神聖 BUFF</span>：承受普攻單次傷害上限不超過自身最大 HP 10%（最低不低於 1,000）；受到普攻時有 15% 機率完全免傷並 100% 反彈該傷害；普攻命中失敗時有 25% 強制修正為命中。</li>
+                  <li><span class="faction-pojun">破軍學院神聖 BUFF</span>：普攻每下附加 150 點真實傷害（三重矢每箭附加 50 點真實傷害）；命中失敗有 25% 強制修正為命中；攻擊帶有禦守 BUFF 之目標時，有 15% 機率無視其防護打出原始傷害。</li>
+                  <li><b>怪物增傷效果</b>：兩種神聖 BUFF 攻擊小怪皆附加其最大 HP 10% 固定傷害，攻擊小 BOSS 附加最大 HP 5% 固定傷害。</li>
                 </ul>
               </li>
               <li><b>逆轉弱勢增益（無需集結自動常駐）</b>：
                 <ul>
-                  <li>當學院積分落後 300 分啟動「<b>弱勢一階</b>」（神聖效果翻倍為 2 倍，擊殺怪物個人與學院積分額外 +1）。</li>
-                  <li>當積分落後 500 分且擊殺數落後，或「弱勢一階」持續達 7 分鐘時，升級為「<b>弱勢二階</b>」（神聖效果翻倍為 3 倍，擊殺怪物額外積分 +2）。啟動後至少鎖定維持 1 分鐘以上。</li>
+                  <li>當戰局開打後，若己方陣營總積分與總擊殺數皆落後，且學院積分落後達 300 分時啟動「<b>弱勢一階</b>」（神聖效果翻倍為 2 倍，神聖光環下擊殺小怪學院積分額外 +1）。</li>
+                  <li>當積分落後達 500 分且擊殺數落後，或「弱勢一階」持續達 7 分鐘時，升級為「<b>弱勢二階</b>」（神聖效果翻倍為 3 倍，神聖光環下擊殺小怪學院積分額外 +2，且 <b>PVP 擊殺敵方玩家個人積分額外 +2</b>）。啟動後至少鎖定維持 1 分鐘以上。</li>
                 </ul>
               </li>
             </ul>
 
-            <h3>【四、 首領召喚與怪物獵殺積分】</h3>
+            <h3>【五、 首領召喚與怪物獵殺積分】</h3>
             <ul>
-              <li><b>小弟怪物</b>：擊殺個人積分 +1（處於神聖 BUFF 額外學院積分 +2）。全場累計擊殺每達 50 隻將於戰場隨機召喚小 BOSS「大大」前來復仇；累計擊殺達 1200 隻將於【中央廣場】召喚戰場霸主「暗黑刀神Jr」。</li>
+              <li><b>戰場小怪</b>：擊殺獲得個人貢獻分 +1（處於神聖 BUFF 時學院總積分額外 +2，若享有弱勢一/二階再額外 +1/+2）。全場累計擊殺小怪每達 50 隻將召喚小 BOSS「大大」前來復仇；累計達 1200 隻將於【中央廣場】召喚戰場霸主「暗黑刀神Jr」。</li>
               <li><b>戰場首領</b>：
                 <ul>
-                  <li>小 BOSS（大大）：擊殺個人積分 +5、學院積分 +5（神聖 BUFF 額外學院積分 +5）。</li>
-                  <li>大 BOSS（暗黑刀神Jr）：擊殺個人積分 +50、學院積分 +150（神聖 BUFF 額外學院積分 +150）。除小怪外皆有機率掉落道教九秘典籍與法寶（享有 10 秒拾取優先權）。</li>
-                  <li><b>戰場殺戮召喚</b>：戰場死亡累積達 50 人時，大 BOSS 亦將降臨中央平台。</li>
+                  <li>小 BOSS（大大）：每次發生 PVP 擊殺或累計殺怪時現身。擊殺個人積分 +1、貢獻分 +5、學院總積分 +5（神聖 BUFF 下為 +10）。</li>
+                  <li>大 BOSS（暗黑刀神Jr）：全場玩家死亡累計達 50 人（現身於上方平台）或殺怪達 1200 隻（現身於中央廣場）時降臨。擊殺個人積分 +50、貢獻分 +100、學院總積分 +150（神聖 BUFF 下高達 +300），參與攻擊之同陣營助攻隊友貢獻分 +30！</li>
+				  <li>怪物會掉落破軍/禦守脛甲(α、β、γ)，小怪不會掉落γ，數據可於防具介紹查看，另除小怪外皆有機率掉落道教九秘典籍與法寶，物品掉落享有 10 秒拾取優先權。</li>
                 </ul>
               </li>
             </ul>
 
-            <h3>【五、 PVP 掠奪懸賞、助攻分紅與學院硬幣】</h3>
+            <h3>【六、 PVP 對決、勝負掠奪分紅與九大榮譽稱號王】</h3>
             <ul>
-              <li><b>擊殺掠奪</b>：擊殺敵對玩家可奪取其 20% 個人積分（上限 20 分），奪得之積分 50% 歸個人、50% 上繳學院。若目標積分 ≤ 30 則受到新手保護不損失積分。</li>
-              <li><b>助攻獎勵</b>：在目標死亡前 15 秒內造成傷害之隊友皆算助攻，一般助攻學院總積分 +1。</li>
-              <li><b>懸賞與硬幣激勵</b>：
+              <li><b>PVP 擊殺與助攻</b>：
                 <ul>
-                  <li>擊殺積分達 50 分以上敵對玩家，可獲得學院硬幣（低於 50 分仍可搶奪積分，但不產出硬幣）。</li>
-                  <li><span class="highlight">【高額懸賞獵殺】</span>擊殺個人積分<b>超過 100 分</b>的敵對強者，助攻者隨機一位額外獲得 <span class="highlight">1 枚學院硬幣</span>(無助攻者則給予擊殺者)！助攻者額外獲得<b>自身個人積分 +1、學院總積分 +2</b>！</li>
+                  <li>擊殺敵對玩家：個人積分 +3（若己方處於<b>弱勢二階</b>則為 <span class="highlight">+5</span>）、貢獻分 +30、學院總積分 +10，並立刻召喚一隻小 BOSS「大大」加入戰局！</li>
+                  <li>助攻獎勵（目標陣亡前 15 秒內造成傷害）：個人積分 +1、貢獻分 +10、學院總積分 +2。</li>
                 </ul>
               </li>
-              <li><b>活動結算分配</b>：活動結束時，在線活躍學員將均分學院總積分的 70%；其餘 30% 則依個人擊殺比例分配給擊殺與助攻貢獻者；最終積分將直接提升玩家的角色學院位階。</li>
+              <li><b>陣營勝負掠奪與結算分配機制</b>：
+                <ul>
+                  <li><span class="highlight">【勝方掠奪 20% 分紅池】</span>：結算時學院總積分較高之獲勝陣營，將直接<b>掠奪敗方陣營 20% 的總積分分紅池</b>納為己有（敗方僅剩 80% 分紅池）；若雙方總積分平手，則觸發平手懲罰，雙方分紅池皆以 <b>80%</b> 計算！</li>
+                  <li><b>60% 基礎分紅池</b>：由所屬學院所有在線達標學員，依個人<b>「貢獻分比例」</b>公平瓜分。</li>
+                  <li><b>40% 擊殺分紅池</b>：由所屬學院在線達標學員，依個人<b>「有效擊殺貢獻比（擊殺數 + 0.25 × 助攻數）」</b>進行額外戰鬥分紅。</li>
+                  <li>結算所得之總積分（個人戰鬥積分 + 學院基礎分紅 + 擊殺助攻分紅）將直接轉入角色之學院位階總分。</li>
+                </ul>
+              </li>
+              <li><b>👑【各陣營九大榮譽稱號王評選】</b>：
+                <p>活動結算時，雙方陣營將依下列優先順序各自獨立評選在線達標學員（每人限得一項稱號，數值需大於 0；同分時依序比較貢獻分與個人積分），榮獲稱號者將額外獲得<b>【學院硬幣 x 5】</b>，並於戰績榜顯示專屬代表符號：</p>
+                <div>
+                  <span class="tag-title">★ 擊殺王</span>：擊殺敵對玩家次數最多<br>
+                  <span class="tag-title">▲ 助攻王</span>：參與玩家對抗助攻次數最多<br>
+                  <span class="tag-title">※ 積分王</span>：個人作戰獲得之戰鬥積分最高<br>
+                  <span class="tag-title">☆ 貢獻王</span>：戰場各項行動累積之貢獻分最高<br>
+                  <span class="tag-title">● 打野王</span>：獵殺戰場怪物總數最多<br>
+                  <span class="tag-title">■ 據點王</span>：最後一擊擊殺據點首領次數最多<br>
+                  <span class="tag-title">◆ 奪劍王</span>：成功將賢者之劍護送回基地次數最多<br>
+                  <span class="tag-title">◎ 推塔王</span>：最後一擊擊破並佔領守護者之塔次數最多<br>
+                  <span class="tag-title">▼ 奉獻王</span>：戰場英勇陣亡次數最多
+                </div>
+              </li>
             </ul>
 
             <div class="warning-box">
               <h3 style="color:#b30000; margin-top:0; border-left:none; padding-left:0;">🛡️【重要規章：戰場風紀與防弊監控機制】</h3>
-              <p>戰場全面啟用<b>多維度行為防弊監控系統</b>（包含消極、刻意送頭、惡意洗分等破壞平衡之行為）：</p>
+              <p>戰場全面啟用<b>多維度動態行為監控系統</b>（針對同 IP 異常互殺、短時間連續餵分、多次死亡卻毫無實質作戰與貢獻等破壞競技平衡之行為進行全時段自動分析）：</p>
               <ul>
-                <li>若系統偵測到異常行為，將立即中斷擊殺結算，不予計分與發放獎勵。</li>
-                <li>系統針對嚴重行為採取<b>階梯式處分</b>：前期違規將給予系統警報通報；若經警告仍持續違規，系統將<b>扣除個人戰場積分沒收上繳所屬學院，並發送警報廣播</b>。</li>
-                <li><b>嚴重累犯者</b>：系統將立即<b>沒收當場所有戰場積分平分雙方學院、直接重罰扣除角色本體學院積分 100 點、發布全伺服器廣播，並強制驅逐出場</b>！請各位勇士遵守公平競技原則，切勿以身試法。</li>
+                <li>系統以玩家<b>全方位戰場實質貢獻度</b>為評估依據，若判定對抗行為異常、短時間重複擊殺同一目標或缺乏實質作戰貢獻，將<b>即時自動攔截並中斷計分</b>，該次擊殺不予發放任何積分、貢獻分與戰績。</li>
+                <li>系統配備<b>階梯式警示與嚴懲機制</b>：初期異常（第 1~2 次）將予以系統警報提示；若經警告仍持續違規（第 3~4 次），系統將<b>每次直接扣除個人戰場積分 30 點上繳學院，並通報全場</b>。</li>
+                <li><b>嚴重累犯者（累計達 5 次警告）</b>：系統將<b>強制驅逐出場、列入當場次黑名單禁止再次進場（含組隊跟隨）、沒收全額戰場積分平分給雙方學院、全伺服器公告懲戒，並直接重罰扣除角色本體學院總積分 100 點</b>！請各位勇士遵守公平競技原則，切勿投機取巧。</li>
               </ul>
             </div>
 
@@ -2465,8 +2682,8 @@ const DATA = [
       `);
     }
     function openDisclaimer() {
-      let popup = window.open("", "Disclaimer", "width=550,height=420,scrollbars=yes");
-      popup.document.write(`
+      
+      openCustomModal(`
         <html>
           <head><title>免責聲明</title></head>
           <body style="font-family:Arial, sans-serif; padding:20px; line-height:1.7;">
@@ -2479,59 +2696,77 @@ const DATA = [
         </html>
       `);
     }
+  
   </script>
 </head>
 <body>
 
-  <!-- 最上方：公司名稱（固定比例與漸層文字） -->
-  <div class="brand-bar">
+  <!-- 最上方：品牌標題橫幅 -->
+  <header class="brand-bar">
     <div class="company-name">懷舊の天堂</div>
-  </div>
+  </header>
 
-  <!-- 中間：按鈕列（改由 JS 生成，支援響應式多行換行） -->
-  <div class="header-nav" id="headerNav"></div>
+  <!-- 中間：分類導航按鈕列 -->
+  <nav class="header-nav" id="headerNav"></nav>
 
-  <!-- 下方：內容區塊 -->
-  <div class="content" id="content">
+  <!-- 下方：主內容展示區 -->
+  <main class="content" id="content">
     <div class="content-box">
       <div class="title-main">
-        20多年過去了，我們都長大了。 或許你現在忙著工作、忙著顧家，不再有當年通宵練功的體力。<br>
-        但心中的那股熱血，是不是還沒熄滅？<br><br>
-        如果你想回味一下曾經的天堂，忙裡偷閒悠悠哉哉地遊玩， 歡迎！這裡，是專為「現在的你」打造的。<br><br>
+        20多年過去了，我們都長大了。<br>
+        或許你現在忙著工作、忙著顧家，不再有當年通宵練功的體力。<br>
+        但心中那份對經典天堂的熱血，是否依然澎湃？<br><br>
+        如果你想重溫當年的感動，在繁忙的日常中偷得浮生半日閒，自在悠閒地打寶遊玩——<br>
+        誠摯歡迎回家！這裡，是專為「現在的你」用心打造的樂園。<br><br>
         🔥 【上班族救星．內掛解放雙手】 🔥<br>
-        不用擔心跟不上大部隊！完善的內掛系統，上班掛機、下班打王。不管是開會還是顧小孩，你的角色都在變強。<br><br>
+        不用擔心落後進度！完善優化的內掛機制，上班自動掛機、下班齊聚推王。無論開會或顧家，角色都在穩健成長。<br><br>
         💰 【拒絕課金戰士．農夫也能出頭天】 💰<br>
-        真正的「無課」友善環境！所有裝備、道具皆可透過打怪取得。沒有特權，只有滿腔的熱血。<br><br>
+        堅持「無課友善」綠色平衡！所有核心裝備、珍貴道具皆可由打怪與副本取得。沒有特權，只有實力與熱血。<br><br>
         🛠️ 【獨家自創玩法．拒絕千篇一律】 🛠️<br>
-        玩膩了公式化的設定？我們擁有獨家開發的副本與活動，結合玩家建議持續優化。<br><br>
-        🤝 【細水長流．承諾長久營運】 🤝<br>
-        我們不求牟利，只求一群老朋友開心。GM 就在你身邊，聽得見你的聲音，改得動遊戲的設定。
+        厭倦了一成不變的公式化服？我們擁有持續開發的原創副本與趣味活動，傾聽玩家建議持續進化優化。<br><br>
+        🤝 【細水長流．承諾長久穩定營運】 🤝<br>
+        不求炒短線牟利，只願凝聚一群志同道合的老朋友。GM 隨時陪伴在側，傾聽建言、持續維護，打造長久陪伴的家。
       </div>
+    </div>
+  </main>
+
+  <!-- LINE 群浮動入口 -->
+  <aside class="Show-Site">
+    <a href="https://line.me/ti/g2/QD5OdsA9fhKU8b_jSm0zY1Q8vqQow2ViCS16kQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">
+      <img src="Image/LineGroup.jpg" alt="LINE 群 QR Code" class="promo-btn" title="加入官方LINE群">
+      <span class="site-text">LINE官方群</span>
+    </a>
+  </aside>
+
+  <!-- 右下角贊助入口 -->
+  <aside class="donate-box">
+    <button class="donate-btn" onclick="document.getElementById('donateModal').style.display='block'">
+      ✨ 贊助支持 ✨
+    </button>
+  </aside>
+
+  <!-- 通用內容 Modal 彈跳視窗 (取代 window.open 避免被瀏覽器阻擋) -->
+  <div id="infoModal" class="info-modal" onclick="handleModalClick(event, 'infoModal')">
+    <div class="info-modal-wrapper">
+      <span class="info-modal-close-btn" onclick="closeCustomModal()">&times;</span>
+      <div id="infoModalBody" class="info-modal-body"></div>
     </div>
   </div>
 
-  <!-- LINE 群浮動入口 -->
-  <div class="Show-Site">
-    <a href="https://line.me/ti/g2/QD5OdsA9fhKU8b_jSm0zY1Q8vqQow2ViCS16kQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">
-      <img src="Image/LineGroup.jpg" alt="LINE 群 QR Code" class="promo-btn" title="加入官方LINE群">
-	  <!-- 在這裡加入文字 -->
-		<span class="site-text">LINE群組</span>
-    </a>
-  </div>
-
-  <!-- 右下角贊助入口 -->
-  <div class="donate-box">
-    <button class="donate-btn" onclick="document.getElementById('donateModal').style.display='block'">
-      ✨ Donate ✨
-    </button>
+  <!-- 疑難雜症 F&Q Modal 彈跳視窗 -->
+  <div id="faqModal" class="info-modal" onclick="handleModalClick(event, 'faqModal')">
+    <div class="info-modal-wrapper" style="max-width: 960px; height: 88vh;">
+      <span class="info-modal-close-btn" onclick="closeFaqModal()">&times;</span>
+      <iframe src="F&Q.html" class="faq-modal-iframe"></iframe>
+    </div>
   </div>
 
   <!-- 贊助 Modal 彈跳視窗 -->
   <div id="donateModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="document.getElementById('donateModal').style.display='none'">&times;</span>
-      <h3 style="color:#333; margin-bottom:10px;">贊助開發</h3>
-      <p style="color:#666; font-size:14px; line-height:1.5;">掃描QR碼加入客服帳號<br><b style="color:#0078D4;">@774twnfm</b></p>
+      <h3 style="color:#333; margin-bottom:10px;">贊助開發與營運</h3>
+      <p style="color:#666; font-size:14px; line-height:1.5;">掃描下方 QR Code 加入官方客服帳號<br><b style="color:#0078D4;">@774twnfm</b></p>
       <img src="Image/LineDonate.jpg" alt="LINE Pay QR Code" class="qrcode">
     </div>
   </div>
