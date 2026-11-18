@@ -627,8 +627,8 @@
     const List = [
       "更新內容", "遊戲設定", "特色介紹", "職業介紹", "地圖介紹",
       "武器介紹", "防具介紹", "飾品介紹", "道具介紹", "變身卡介紹",
-      "娃娃介紹", "下載專區", "贊助相關", "遊戲內容Q&A", "疑難雜症",
-      "待更新", "待更新", "待更新", "待更新", "待更新"
+      "娃娃介紹", "下載專區", "贊助相關", "推廣相關", "遊戲內容Q&A",
+	  "疑難雜症", "待更新", "待更新", "待更新", "待更新"
     ];
     const API_URL = "https://script.google.com/macros/s/AKfycbw9mAM_Br8ZlFn5CWL0E9Q3JSkHilINtl0R9-B-G_ipeGrUuoxVP0JWSwJ6X1b6oiXT/exec";
     
@@ -661,6 +661,7 @@
       <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
       <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
       
+	  
 	  <span class="h2-blue">★★ 2026/11/15 更新內容 ★★</span><br>
       <span class="data-block">新增單人挑戰Boss，並設有排行榜，每周日結算，各職業前三名領取獎勵<BR>
 	  每日只能進場一次，並且需要支付報名費，Boss與野王相同<BR>
@@ -2047,13 +2048,15 @@
       單次開啟獲得400元寶、100萬天幣，總共12000元寶、3000萬天幣</span><BR>
       <BR><span class="h2-green">萬能藥販售 (能力最高35點，不限制使用瓶數，可轉移)：</span><BR>
       <span class="data-block">單筆購買一瓶每瓶5元，十瓶以上每瓶4元，體質、精神隨時可使用，其餘能力須1轉後使用</span><BR>`,
-
-      // 13: 留言板
+	  // 13: 推廣相關
+	  `<span class="h2-red">籌備中<BR>`
+	  ,
+      // 14: 留言板
       "__ONLINE_COMMENT__",
 
-      // 14: 疑難雜症
+      // 15: 疑難雜症
       "疑難雜症",
-      "待更新","待更新","待更新","待更新","待更新"
+      "待更新","待更新","待更新","待更新"
     ];
 
     // ================= 頁面初始化與導航互動 =================
@@ -2453,7 +2456,7 @@
       openCustomModal(`
         <div class="modal-article">
           <h2 style="color:red; text-align:center;">※※ 定時獎勵怪出沒 ※※</h2>
-          <p>1. 每日早晚3、6、9、12點及加碼晚上7、8、10、11點，會廣播100隻惡棍地痞在說話之島或海賊島出沒。</p>
+          <p>1. 每日早晚3、6、9、12點，會廣播50隻惡棍地痞在說話之島或海賊島出沒。</p>
           <p>2. 擊殺可獲取懷舊幣、元寶、與稀有道具，此為獎勵新手可輕易擊殺，未擊殺的惡棍地痞不會消失。</p>
           <p>3. 特別注意：內掛不會攻擊他、冰雪暴也無法傷害他。</p>
           <div style="text-align:center; margin-top:20px;">
