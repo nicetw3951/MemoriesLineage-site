@@ -645,7 +645,8 @@
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
-
+	<!--<button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button> -->
+	
     const DATA = [
       // 0: 更新內容
       `
@@ -658,12 +659,15 @@
       <button class="download-btn" onclick="openAcademyBattle()">※每日九點二十分學院戰場※</button>
       <button class="download-btn" onclick="open9clock40event()">※每日九點四十分寶藏地宮※</button>
       <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
-      <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
       <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
       
+	  <span class="h2-blue">★★ 2026/11/19 更新內容 ★★</span><br>
+      <span class="data-block">今日重啟所有角色內掛自動復活強制開啟，不需要的再自行關閉<BR>
+	  恢復推廣獎勵，詳細說明請至上方推廣相關頁面查看<BR>
+	  因恢復推廣獎勵，故關閉每日定時獎勵怪惡棍地痞出沒活動<BR>
+      </span><BR>
 	  <span class="h2-blue">★★ 2026/11/18 更新內容 ★★</span><br>
-      <span class="data-block">恢復推廣獎勵，詳細說明請至上方推廣相關頁面查看<BR>
-	  新增榜上通緝犯會顯示玩家所在位置，衙門稅率調升5%->10%<BR>
+      <span class="data-block">新增榜上通緝犯會顯示玩家所在位置，衙門稅率調升5%->10%<BR>
 	  新增攻擊模式自動鎖定+追擊(測試中)，可於WHO頁面->個人設定切換開關<BR>
 	  模式開啟時，只需要點一下攻擊目標，伺服器會自動追擊，當目標丟失會自動停止<BR>
 	  當暈眩、凍結、手動移動也會停止鎖定，若攻速過快導致無法停下，可透過施放攻擊魔法停止<BR>
@@ -2059,7 +2063,7 @@
 	  // 13: 推廣相關
 	  `<span class="h2-red">《 每日推廣任務 SOP 教學 》</span><br>
 	  <div style="margin: 10px 0; padding: 8px 12px; background: rgba(241, 196, 15, 0.15); border-left: 4px solid #f1c40f; border-radius: 4px; text-align: left;">
-    🎁 <strong>完成任務獎勵：</strong><span style="color: #f1c40f; font-weight: bold;">懷舊幣*300、元寶*200</span>
+    🎁 <strong>完成任務獎勵：</strong><span style="color: #f1c40f; font-weight: bold;">懷舊幣*500、元寶*250</span>
   </div>
 	  <div style="margin-top: 8px; line-height: 1.8; text-align: left;">
     <strong>前置作業：</strong>請先申請 Discord 帳號，並
@@ -2287,7 +2291,7 @@
           <p>1. 人數至少5人加入LINE群組，並創立好血盟，AT成員需加入血盟。</p>
           <p>2. 留言血盟名稱與標註GM、AT成員在社群的名子，查核血盟與LINE群組後，依照人數發放禮包。</p>
           <p>3. 一個LINE帳號只可領取一份AT團禮包，一個角色只能開啟一個AT禮包，角色超過七轉無法開啟禮包。</p>
-          <p>4. 人數若有增加，可再次申請，核對人數後會補發差額的禮包。EX 上次申請10人、這次申請12人，補發2包禮包</p>
+          <p>4. 人數確認後不得再追加新增，請人員到齊後再提出申請!</p>
           <p>5. 禮包內容物: +8新手武器製作圖紙、AT新手護身符(3日綁)、金幣*5百萬、懷舊代幣(綁)*250、巧克力蛋糕(綁定)*100、名譽貨幣(綁定)*100、經驗藥水200%(綁)*100</p>
           <p>AT新手護身符(3日)效果: 血量+300、魔量+200、經驗+20%、回血+10、回魔、魔防、物減、魔減都+5、力、敏、智、近傷、近命、遠傷、遠命、魔攻都+2、防禦-2</p>
           <div style="text-align:center; margin-top:20px;">
