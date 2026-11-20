@@ -1459,6 +1459,13 @@ const DATA_SERVER_1 = [
 
 // 二服資料（預設複製一服內容，後續可針對個別索引覆寫，例如：DATA_SERVER_2[1] = `...`;）
 const DATA_SERVER_2 = [...DATA_SERVER_1];
+
+// 二服「更新內容」(索引 0)
+DATA_SERVER_2[0] = `
+  <span class="h2-blue">★★ 二服更新內容 ★★</span><br>
+  <span class="data-block">建置中</span>
+`;
+
 // 清空二服「武器介紹」(索引 5) 並改為資料庫武器展示樣本
 DATA_SERVER_2[5] = "__WEAPON_SHOWCASE_S2__";
 

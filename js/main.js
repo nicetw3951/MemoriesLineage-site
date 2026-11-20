@@ -60,13 +60,14 @@ function showData(index, btnElem) {
     commentInterval = null;
   }
 
-  const serverLabel = currentServer === 2 ? "二服" : "一服";
-  const serverBadge = `<span class="server-badge ${currentServer === 2 ? "is-server-2" : ""}">${serverLabel}</span>`;
+  const serverBadge = currentServer === 2
+    ? `<span class="server-badge is-server-2">二服</span> `
+    : "";
 
   if (text === "__ONLINE_COMMENT__") {
     content.innerHTML = `
       <div class="content-box">
-        <h2 class="h2-purple">${serverBadge} 遊戲內容Q&A 問答板 (提問 / 回覆)</h2>
+        <h2 class="h2-purple">${serverBadge}遊戲內容Q&A 問答板 (提問 / 回覆)</h2>
         <div style="margin-top:15px;">
           <input id="visitorName" placeholder="暱稱 (玩家)" style="width:250px; max-width:100%; padding:8px; margin-bottom:8px; border:1px solid #ccc; border-radius:4px;"><br>
           <textarea id="questionInput" style="width:100%; max-width:550px; height:60px; padding:8px; border:1px solid #ccc; border-radius:4px; resize:none;" placeholder="請輸入你的問題"></textarea><br>
@@ -94,7 +95,7 @@ function showData(index, btnElem) {
 
   content.innerHTML = `
     <div class="content-box">
-      <div class="h2-purple" style="border-bottom:2px solid #ddd; padding-bottom:8px; margin-bottom:15px;">${serverBadge} ${title}</div>
+      <div class="h2-purple" style="border-bottom:2px solid #ddd; padding-bottom:8px; margin-bottom:15px;">${serverBadge}${title}</div>
       <div style="margin-top: 1rem;">${text}</div>
     </div>
   `;
