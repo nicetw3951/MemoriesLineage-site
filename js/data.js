@@ -17,12 +17,16 @@ const DATA_SERVER_1 = [
   <button class="download-btn" onclick="openAcademyBattle()">※每日九點二十分學院戰場※</button>
   <button class="download-btn" onclick="open9clock40event()">※每日九點四十分寶藏地宮※</button>
   <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
-  <button class="download-btn" onclick="openTimeClockevent()">※每日定時獎勵怪出沒※</button>
   <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
   
+  	  <span class="h2-blue">★★ 2026/11/19 更新內容 ★★</span><br>
+      <span class="data-block">今日重啟所有角色內掛自動復活強制開啟，不需要的再自行關閉<BR>
+	  恢復推廣獎勵，詳細說明請至上方推廣相關頁面查看<BR>
+	  因恢復推廣獎勵，故關閉每日定時獎勵怪惡棍地痞出沒活動<BR>
+      </span><BR>
+
 	  <span class="h2-blue">★★ 2026/11/18 更新內容 ★★</span><br>
-  <span class="data-block">恢復推廣獎勵，詳細說明請至上方推廣相關頁面查看<BR>
-	  新增榜上通緝犯會顯示玩家所在位置，衙門稅率調升5%->10%<BR>
+  <span class="data-block">新增榜上通緝犯會顯示玩家所在位置，衙門稅率調升5%->10%<BR>
 	  新增攻擊模式自動鎖定+追擊(測試中)，可於WHO頁面->個人設定切換開關<BR>
 	  模式開啟時，只需要點一下攻擊目標，伺服器會自動追擊，當目標丟失會自動停止<BR>
 	  當暈眩、凍結、手動移動也會停止鎖定，若攻速過快導致無法停下，可透過施放攻擊魔法停止<BR>
@@ -1418,7 +1422,7 @@ const DATA_SERVER_1 = [
 	  // 13: 推廣相關
 	  `<span class="h2-red">《 每日推廣任務 SOP 教學 》</span><br>
 	  <div style="margin: 10px 0; padding: 8px 12px; background: rgba(241, 196, 15, 0.15); border-left: 4px solid #f1c40f; border-radius: 4px; text-align: left;">
-🎁 <strong>完成任務獎勵：</strong><span style="color: #f1c40f; font-weight: bold;">懷舊幣*300、元寶*200</span>
+🎁 <strong>完成任務獎勵：</strong><span style="color: #f1c40f; font-weight: bold;">懷舊幣*500、元寶*250</span>
   </div>
 	  <div style="margin-top: 8px; line-height: 1.8; text-align: left;">
 <strong>前置作業：</strong>請先申請 Discord 帳號，並
@@ -1437,8 +1441,8 @@ const DATA_SERVER_1 = [
 <strong>8. 領取序號：</strong>完成評價後回到 Discord，點擊黃色的 <span style="color: #f1c40f; font-weight: bold;">「我的序號」</span> 按鈕即可領取獎勵。<br>
 	<strong>9. 找推廣NPC：</strong>到遊戲內找推廣NPC點擊對話，於對話窗輸入序號即可領到獎勵(一個帳號最多領三份)。
 	<div style="margin-top: 15px; text-align: center;">
-  <a href="image/sop-guide.jpg" target="_blank" title="點擊放大查看原圖">
-    <img src="image/sop-guide.jpg" alt="推廣任務圖解SOP" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #444; cursor: zoom-in;">
+  <a href="Image/sop-guide.jpg" target="_blank" title="點擊放大查看原圖">
+    <img src="Image/sop-guide.jpg" alt="推廣任務圖解SOP" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #444; cursor: zoom-in;">
   </a>
   <div style="font-size: 12px; color: #aaa; margin-top: 5px;">（點擊圖片可放大查看細節）</div>
 </div>
