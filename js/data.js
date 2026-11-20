@@ -19,12 +19,15 @@ const DATA_SERVER_1 = [
   <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
   <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
   
+    <span class="h2-blue">★★ 2026/11/20 更新內容 ★★</span><br>
+      <span class="data-block">修復無法正確兌換與製作的異常<BR>
+	  移除廣播惡棍地痞出沒的訊息<BR>
+	  </span><BR>
   	  <span class="h2-blue">★★ 2026/11/19 更新內容 ★★</span><br>
       <span class="data-block">今日重啟所有角色內掛自動復活強制開啟，不需要的再自行關閉<BR>
 	  恢復推廣獎勵，詳細說明請至上方推廣相關頁面查看<BR>
 	  因恢復推廣獎勵，故關閉每日定時獎勵怪惡棍地痞出沒活動<BR>
       </span><BR>
-
 	  <span class="h2-blue">★★ 2026/11/18 更新內容 ★★</span><br>
   <span class="data-block">新增榜上通緝犯會顯示玩家所在位置，衙門稅率調升5%->10%<BR>
 	  新增攻擊模式自動鎖定+追擊(測試中)，可於WHO頁面->個人設定切換開關<BR>
