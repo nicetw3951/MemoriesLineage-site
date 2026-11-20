@@ -611,7 +611,7 @@ body, html {
 
 /* ==================== 伺服器切換按鈕與二服對比主題 ==================== */
 .header-nav button.server-toggle-btn {
-  /*display: none;  暫時隱藏切換按鈕，要開啟時移除此行即可 */
+  display: none;  /*暫時隱藏切換按鈕，要開啟時移除此行即可 */
   background: linear-gradient(180deg, #ffb703 0%, #fb8500 100%);
   color: #1f1300;
   border: 2px solid #fff3b0;
