@@ -19,6 +19,10 @@ const DATA_SERVER_1 = [
   <button class="download-btn" onclick="open10clockevent()">※每日十點無限大賽※</button>
   <button class="download-btn" onclick="openClanComeIn()">※AT團申請※</button><BR><BR>
   
+	  <span class="h2-blue">★★ 2026/11/21 更新內容 ★★</span><br>
+      <span class="data-block">學院戰場降低據點首領強度<BR>
+	  修正商店幣只能買賣1億金額的問題<BR>
+	  </span><BR>	
     <span class="h2-blue">★★ 2026/11/20 更新內容 ★★</span><br>
       <span class="data-block">修復無法正確兌換與製作的異常<BR>
 	  移除廣播惡棍地痞出沒的訊息<BR>
